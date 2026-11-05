@@ -1,0 +1,17 @@
+{
+  "partType": "wokwi-example-part",
+  "displayName": "Example Part",
+  "category": "module",
+  "envelope": { "widthMm": 0, "depthMm": 0, "heightMm": 0 },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://example.com/datasheet.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Template: remplacer toutes les valeurs, citer la source, ne jamais laisser 0."
+}

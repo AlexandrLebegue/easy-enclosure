@@ -33,15 +33,3 @@ supposé et l'absence de fiche constructeur.
 
 Demande : si Velxio publie des empreintes physiques officielles pour ces symboles, fournir la
 correspondance canonique afin de remplacer ces valeurs estimées.
-
-## R4 — Alias de cartes `board-velxio-*`
-
-L'ICD cite `board-velxio-esp32` et `board-velxio-arduino-uno`, et le projet d'exemple de l'agent B
-utilise ces `partType`, mais `data/velxio-types.json` ne liste que les équivalents `wokwi-*`.
-J'ai ajouté dans la base des alias explicites : `board-velxio-esp32`,
-`board-velxio-arduino-uno`, `board-velxio-esp32-c3`, `board-velxio-rpi-pico` et
-`board-velxio-stm32`. Ils réutilisent les dimensions documentées et sont marqués « extra » par
-le rapport de couverture.
-
-Demande : confirmer les `partType` canoniques réellement produits par les exports Velxio afin de
-figer les alias (ou de les supprimer s'ils sont inutiles).

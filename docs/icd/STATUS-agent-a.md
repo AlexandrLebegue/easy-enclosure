@@ -38,11 +38,11 @@ Date : 2026-11-05. Branche : `agent-a/components`.
 - 109 entrées sont `estimated` : modules génériques, passifs dérivés de KiCad, variantes
   ou composants virtuels. Chaque entrée estimée porte une note explicite ; aucune valeur
   estimée n'est présentée comme certaine.
-- Alias ajoutés pour l'intégration avec l'agent B et l'ICD : `board-velxio-esp32`,
-  `board-velxio-arduino-uno`, plus les priorités `board-velxio-esp32-c3`,
-  `board-velxio-rpi-pico`, `board-velxio-stm32`, `wokwi-servo-mg996r` et
-  `velxio-epaper-2-13`. Ils apparaissent en « extra » dans la couverture car absents de
-  `data/velxio-types.json`.
+- Alias validés par le chef de projet le 2026-11-05 : `board-velxio-esp32`,
+  `board-velxio-arduino-uno`, `board-velxio-esp32-c3`, `board-velxio-rpi-pico`,
+  `board-velxio-stm32`, `wokwi-servo-mg996r` et `velxio-epaper-2-13`. Ils restent listés en
+  « extra » par la couverture car absents de `data/velxio-types.json`, mais sont canoniques
+  pour la base.
 
 ## Ce qui reste
 
@@ -52,8 +52,6 @@ Date : 2026-11-05. Branche : `agent-a/components`.
   et notes explicites ; à remplacer si Velxio publie une empreinte physique officielle.
 - Vérification physique des modules génériques (capteurs, relais, drivers) avant impression :
   les cotes de PCB varient selon les fournisseurs.
-- Les alias `board-velxio-*` et la variante `velxio-epaper-2-13` restent des entrées de
-  transition tant que Velxio n'expose pas officiellement ces `partType`.
 - Aucune interface d'écriture : les mises à jour passent par git, conformément à l'ICD.
 
 ## Blocages

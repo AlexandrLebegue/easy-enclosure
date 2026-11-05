@@ -14,6 +14,7 @@ const {
   resolvePartTypes,
   loadParts,
   build,
+  computeCoverage,
 } = require('../lib');
 
 function validSpec(overrides = {}) {
@@ -129,6 +130,25 @@ test('priority board aliases and display/servo variants resolve', () => {
   const { resolved, missing } = resolvePartTypes(requested, loadParts());
   assert.deepEqual(missing, []);
   assert.equal(resolved.length, requested.length);
+});
+
+test('all observed Velxio types are covered, including virtual components', () => {
+  const coverage = computeCoverage();
+  assert.equal(coverage.covered.length, coverage.total);
+  assert.deepEqual(coverage.missing, []);
+
+  const parts = loadParts();
+  for (const partType of [
+    'velxio-logic-and',
+    'velxio-flip-flop-d',
+    'velxio-junction',
+    'wokwi-opamp-ideal',
+  ]) {
+    const spec = parts.get(partType);
+    assert.ok(spec, `${partType} should be in the database`);
+    assert.equal(spec.confidence, 'estimated');
+    assert.match(spec.notes || '', /virtual/i);
+  }
 });
 
 test('resolve returns 4 resolved and 1 missing for 5 requested types', () => {

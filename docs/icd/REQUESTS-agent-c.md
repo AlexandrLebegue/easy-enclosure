@@ -2,45 +2,39 @@
 
 Demandes de changement hors périmètre, à traiter par le propriétaire du fichier concerné.
 
-## R1 — Monter le panneau de chat à côté de l'aperçu 3D
+## R1 — Monter le panneau de chat à côté de l'aperçu 3D — RÉSOLU
 
-**Fichiers concernés (hors périmètre agent C)** : `src/app/app.ts`, `src/app/app.html`,
-éventuellement `src/app/core/state/**`.
+**Fichiers concernés** : `src/app/app.ts`, `src/app/app.html`, `src/app/app.spec.ts`.
 
-**Besoin** : afficher `ChatPanelComponent` dans une colonne à côté de `app-renderer`, comme le
-panneau latéral existant, et connecter sa spec à l'état applicatif.
+**État** : fait le 2026-11-05 à la demande explicite de l'utilisateur. Le panneau est monté à
+gauche de `app-renderer`, avec un bouton pour le masquer, et relié à `ChatStateService` via
+`[specInput]` / `(specChange)`. Un mock `app-chat-panel` a été ajouté au test de la coquille.
 
-**Suggestion d'intégration** :
+## R2 — Pont EnclosureSpec → moteur CAO
+
+**Fichiers concernés** : zone agent B (`src/app/velxio/layout/**`, `cutouts/**`, `supports/**`)
+et éventuellement `src/app/velxio/model/**` (ProxBoss).
+
+**Besoin** : consommer l'`EnclosureSpec` exposée par `ChatStateService` et la mapper vers les
+`Params` / appels de génération du moteur, puis renvoyer la géométrie au renderer. Le chat
+n'accède volontairement jamais au moteur : il ne produit que des `ChatPatch` validés.
+
+**Suggestion** :
 
 ```ts
-import { ChatPanelComponent } from './velxio/chat';
-
-@Component({
-  imports: [RendererComponent, SidebarComponent, ChatPanelComponent],
-})
-export class App {}
+const spec = inject(ChatStateService).spec;
+effect(() => {
+  const enclosure = spec();
+  // mapping EnclosureSpec -> Params, puis régénération du rendu
+});
 ```
 
-```html
-<div class="relative min-w-0 flex-1">
-  <app-renderer />
-</div>
+Tant que R2 n'est pas fait, le chat met à jour la spec et son résumé dans l'UI, pas l'aperçu 3D.
 
-<aside class="relative z-10 w-96 overflow-hidden">
-  <app-chat-panel [specInput]="spec()" (specChange)="onSpecChange($event)" />
-</aside>
-```
+## R3 — Authentification du serveur de modèle par défaut
 
-Le composant est autonome et n'a besoin que d'entrées/sorties `specInput` / `specChange`.
-Il ne touche jamais au moteur CAO : il ne produit que des `ChatPatch` validés.
+**Fichiers concernés** : configuration d'exécution (hors dépôt).
 
-**Alternative** : créer une route dédiée `/chat` dans `app.routes.ts` si l'intégrateur préfère un
-écran séparé.
-
-## R2 — Contrat d'état partagé pour EnclosureSpec
-
-**Fichiers concernés** : `src/app/velxio/model/**` (ProxBoss), `src/app/core/state/**`.
-
-**Besoin** : un service d'état partagé exposant l'`EnclosureSpec` courante et acceptant les
-patches validés par le chat. Le chat fournit déjà `applyPatches` et `validateEnclosureSpec` ; il
-suffit de brancher `specChange` sur l'état puis de transmettre la spec au moteur de génération.
+**Besoin** : `http://192.168.1.59:18020/v1` répond `401 Unauthorized` sans clé API. Fournir une
+clé via les réglages UI du panneau (`Base URL`, `Modèle`) ou via
+`globalThis.__VELXIO_CHAT_CONFIG__ = { apiKey: '...' }` pour permettre un test réseau réel.

@@ -1,7 +1,9 @@
 # STATUS — Agent C (assistant conversationnel)
 
 Branche : `agent-c/chat` (basée sur `velxio`)
-Périmètre livré : `src/app/velxio/chat/**`, `docs/icd/STATUS-agent-c.md`, `docs/icd/REQUESTS-agent-c.md`.
+Périmètre livré : `src/app/velxio/chat/**`, `docs/icd/STATUS-agent-c.md`, `docs/icd/REQUESTS-agent-c.md`,
+plus le montage dans la coquille (`src/app/app.ts`, `src/app/app.html`, `src/app/app.spec.ts`)
+à la demande explicite du 2026-11-05.
 
 ## Ce qui marche
 
@@ -29,40 +31,42 @@ Périmètre livré : `src/app/velxio/chat/**`, `docs/icd/STATUS-agent-c.md`, `do
     bouton « Expliquer le choix », résumé live de la spec, réglages base URL / modèle / timeout.
   - aucune dépendance au moteur CAO, à JSCAD ou au rendu 3D ; l'état de sortie est exposé via
     l'output `specChange`.
-- **Point d'entrée public** (`chat/index.ts`) : réexporte le composant, le service,
-  `applyPatches`, `validateEnclosureSpec`, `createDefaultSpec` et les types associés pour
-  simplifier l'intégration.
-- **Tests** (`patches.spec.ts`, `service.spec.ts`, `chat-panel.component.spec.ts`) : 30 tests
-  couvrant patch valide, hors bornes, opération inconnue, découpe dupliquée ou hors face,
-  suppression inconnue, supports valides/inconnus/`none`, mode invalide, valeur non numérique,
-  conversation multi-tours, réponse non-JSON, question `ask-user`, erreurs HTTP/timeout,
-  persistance des réglages et explication.
+- **Montage dans l'application** (`src/app/app.*`)
+  - le panneau est affiché à gauche de l'aperçu 3D, avec un bouton pour le masquer/réafficher.
+  - la spec est portée par `ChatStateService` (`chat/chat-state.service.ts`), partagée entre
+    l'application et le panneau via `[specInput]` / `(specChange)`.
+  - la spec persistée est revalidée au chargement ; une spec invalide est ignorée.
+- **Historique persistant** (`chat/chat-history.ts`) : conversation et tours restaurés depuis
+  `localStorage`, bouton « Effacer » pour purger.
+- **Point d'entrée public** (`chat/index.ts`) : réexporte le composant, le service, l'état,
+  `applyPatches`, `validateEnclosureSpec`, `createDefaultSpec` et les types associés.
+- **Tests** (`patches.spec.ts`, `service.spec.ts`, `chat-panel.component.spec.ts`,
+  `chat-state.service.spec.ts`) : 36 tests couvrant patch valide, hors bornes, opération inconnue,
+  découpe dupliquée ou hors face, suppression inconnue, supports valides/inconnus/`none`, mode
+  invalide, valeur non numérique, conversation multi-tours, réponse non-JSON, question `ask-user`,
+  erreurs HTTP/timeout, persistance des réglages, persistance de l'historique et explication.
 
 ## Vérifications
 
 - `npm run build` : vert.
-- `npm test` : 225/225 SUCCESS (dont les 30 tests du chat).
+- `npm test` : 232/232 SUCCESS (dont les 36 tests du chat).
 - Si Chrome n'est pas installé, lancer avec un binaire Chromium disponible :
   `CHROME_BIN=/chemin/vers/chrome npm test`.
 
 ## Ce qui reste / à intégrer
 
-- **Montage dans la coquille de l'application** : le composant n'est pas encore posé à côté de
-  `app-renderer` car `src/app/app.html` et `src/app/app.ts` sont hors du périmètre de l'agent C.
-  Demande déposée dans `REQUESTS-agent-c.md` (import de `ChatPanelComponent`, ajout de
-  `<app-chat-panel [specInput]="spec" (specChange)="onSpecChange($event)" />` dans une colonne
-  latérale).
-- **Branchement sur la spec réelle** : le panneau démarre sur `createDefaultSpec()` et accepte
-  une spec via l'input `specInput`. Le propriétaire de l'état partagé (agent B / ProxBoss) doit
-  fournir l'`EnclosureSpec` courante et consommer `specChange` pour la transmettre au moteur CAO.
-- **Streaming** : non implémenté, la requête est non-streamée pour garder une validation
+- **Pont vers le moteur CAO** : `ChatStateService` expose l'`EnclosureSpec` validée, mais le
+  mapping `EnclosureSpec -> Params` et l'appel au moteur de génération appartiennent à l'agent B
+  (zone `layout` / `cutouts` / `supports`). Tant que ce pont n'existe pas, le chat met à jour la
+  spec et son résumé dans l'UI, pas le rendu 3D.
+- **Streaming** : non implémenté, la requête reste non-streamée pour garder une validation
   atomique des patches.
-- **Historique persistant** : l'historique vit en mémoire du composant ; pas de sauvegarde
-  localStorage pour éviter de stocker des données projet sans décision d'ICD.
-- **Tests réseau réels** : le service est testé avec `fetch` simulé ; aucun test d'intégration
-  contre le serveur `192.168.1.59:18020` (dépend de l'environnement).
+- **Test réseau réel** : le serveur `http://192.168.1.59:18020/v1` répond `401 Unauthorized`
+  sans clé API ; le service est donc testé avec `fetch` simulé. Renseigner une clé dans les
+  réglages UI ou `__VELXIO_CHAT_CONFIG__` pour un test manuel.
 
 ## Blocages
 
-- Aucun blocage technique. Le seul point ouvert est l'intégration UI dans la coquille applicative,
-  hors périmètre (voir `REQUESTS-agent-c.md`).
+- Pas de blocage code. Le pont moteur CAO dépend de l'agent B (R2).
+- Le test contre le serveur par défaut est bloqué par l'authentification (`401 Unauthorized`) ;
+  aucune clé API n'est fournie dans l'environnement.

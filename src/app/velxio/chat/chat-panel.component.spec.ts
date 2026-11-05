@@ -21,6 +21,7 @@ describe('ChatPanelComponent', () => {
   }
 
   beforeEach(async () => {
+    localStorage.clear();
     sendMessageSpy = jasmine.createSpy('sendMessage');
     saveConfigSpy = jasmine
       .createSpy('saveConfig')
@@ -182,5 +183,44 @@ describe('ChatPanelComponent', () => {
 
     expect(saveConfigSpy).not.toHaveBeenCalled();
     expect(component.settingsError()).toContain('positif');
+  });
+
+  it('restores the conversation history from localStorage', async () => {
+    sendMessageSpy.and.resolveTo({
+      userText: 'paroi de 3 mm',
+      patches: [{ op: 'set-rule', path: 'rules.wallMm', value: 3 }],
+      message: 'Paroi réglée.',
+    } satisfies ChatTurn);
+
+    const first = createComponent();
+    await first.componentInstance.sendMessage('paroi de 3 mm');
+    first.destroy();
+
+    const second = TestBed.createComponent(ChatPanelComponent);
+    second.detectChanges();
+
+    expect(second.componentInstance.messages().length).toBe(2);
+    const text = (second.nativeElement as HTMLElement).textContent ?? '';
+    expect(text).toContain('Paroi réglée.');
+  });
+
+  it('clears the persisted conversation history', async () => {
+    sendMessageSpy.and.resolveTo({
+      userText: 'bonjour',
+      patches: [],
+      message: 'Bonjour.',
+    } satisfies ChatTurn);
+
+    const fixture = createComponent();
+    const component = fixture.componentInstance;
+    await component.sendMessage('bonjour');
+
+    component.clearHistory();
+    fixture.detectChanges();
+
+    expect(component.messages()).toEqual([]);
+    expect(localStorage.getItem('velxio.chat.history')).toBeNull();
+    const text = (fixture.nativeElement as HTMLElement).textContent ?? '';
+    expect(text).not.toContain('Bonjour.');
   });
 });

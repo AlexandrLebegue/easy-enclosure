@@ -29,15 +29,19 @@ Périmètre livré : `src/app/velxio/chat/**`, `docs/icd/STATUS-agent-c.md`, `do
     bouton « Expliquer le choix », résumé live de la spec, réglages base URL / modèle / timeout.
   - aucune dépendance au moteur CAO, à JSCAD ou au rendu 3D ; l'état de sortie est exposé via
     l'output `specChange`.
-- **Tests** (`patches.spec.ts`, `service.spec.ts`, `chat-panel.component.spec.ts`) : 19 tests
-  couvrant patch valide, hors bornes, opération inconnue, ajout/suppression de découpe,
-  conversation multi-tours, réponse non-JSON, question `ask-user`, erreur de service et
-  explication.
+- **Point d'entrée public** (`chat/index.ts`) : réexporte le composant, le service,
+  `applyPatches`, `validateEnclosureSpec`, `createDefaultSpec` et les types associés pour
+  simplifier l'intégration.
+- **Tests** (`patches.spec.ts`, `service.spec.ts`, `chat-panel.component.spec.ts`) : 30 tests
+  couvrant patch valide, hors bornes, opération inconnue, découpe dupliquée ou hors face,
+  suppression inconnue, supports valides/inconnus/`none`, mode invalide, valeur non numérique,
+  conversation multi-tours, réponse non-JSON, question `ask-user`, erreurs HTTP/timeout,
+  persistance des réglages et explication.
 
 ## Vérifications
 
 - `npm run build` : vert.
-- `npm test` : 214/214 SUCCESS (dont les 19 tests du chat).
+- `npm test` : 225/225 SUCCESS (dont les 30 tests du chat).
 - Si Chrome n'est pas installé, lancer avec un binaire Chromium disponible :
   `CHROME_BIN=/chemin/vers/chrome npm test`.
 
@@ -55,6 +59,8 @@ Périmètre livré : `src/app/velxio/chat/**`, `docs/icd/STATUS-agent-c.md`, `do
   atomique des patches.
 - **Historique persistant** : l'historique vit en mémoire du composant ; pas de sauvegarde
   localStorage pour éviter de stocker des données projet sans décision d'ICD.
+- **Tests réseau réels** : le service est testé avec `fetch` simulé ; aucun test d'intégration
+  contre le serveur `192.168.1.59:18020` (dépend de l'environnement).
 
 ## Blocages
 

@@ -106,3 +106,89 @@ describe('applyPatches', () => {
     expect(result.spec.lid.screwMm).toBe(3);
   });
 });
+
+describe('applyPatches — supports and edge cases', () => {
+  it('rejects a duplicate cutout id', () => {
+    const spec = createDefaultSpec();
+    spec.cutouts = [{ id: 'usb', side: 'front', offsetMm: 5, widthMm: 10, heightMm: 5 }];
+
+    const result = applyPatches(spec, [
+      {
+        op: 'add-cutout',
+        value: { id: 'usb', side: 'back', offsetMm: 5, widthMm: 10, heightMm: 5 },
+      },
+    ]);
+
+    expect(result.applied).toEqual([]);
+    expect(result.rejected[0].reason).toContain('existe déjà');
+  });
+
+  it('rejects removal of an unknown cutout', () => {
+    const result = applyPatches(createDefaultSpec(), [{ op: 'remove-cutout', value: 'missing' }]);
+
+    expect(result.applied).toEqual([]);
+    expect(result.rejected[0].reason).toContain('inconnue');
+  });
+
+  it('adds a support for a known part and rejects an unknown part', () => {
+    const spec = createDefaultSpec();
+    spec.parts = [
+      {
+        id: 'mcu',
+        partType: 'wokwi-arduino-uno',
+        spec: null,
+        canvas: { x: 0, y: 0, rotate: 0 },
+      },
+    ];
+
+    const valid = applyPatches(spec, [
+      {
+        op: 'set-support',
+        value: {
+          partId: 'mcu',
+          type: 'standoff-screw',
+          xMm: 10,
+          yMm: 12,
+          heightMm: 6,
+          screwMm: 2.5,
+        },
+      },
+    ]);
+    expect(valid.rejected).toEqual([]);
+    expect(valid.spec.standoffs.length).toBe(1);
+    expect(valid.spec.standoffs[0].partId).toBe('mcu');
+
+    const invalid = applyPatches(spec, [
+      {
+        op: 'set-support',
+        value: { partId: 'ghost', type: 'cradle', xMm: 1, yMm: 1, heightMm: 4 },
+      },
+    ]);
+    expect(invalid.applied).toEqual([]);
+    expect(invalid.rejected[0].reason).toContain('Composant inconnu');
+  });
+
+  it('removes a support when its type is set to none', () => {
+    const spec = createDefaultSpec();
+    spec.standoffs = [{ partId: 'mcu', type: 'cradle', xMm: 1, yMm: 1, heightMm: 4 }];
+
+    const result = applyPatches(spec, [
+      { op: 'set-support', value: { partId: 'mcu', type: 'none' } },
+    ]);
+
+    expect(result.rejected).toEqual([]);
+    expect(result.spec.standoffs).toEqual([]);
+  });
+
+  it('rejects invalid modes and non-numeric rule values', () => {
+    const result = applyPatches(createDefaultSpec(), [
+      { op: 'set-mode', value: 'exploded' },
+      { op: 'set-rule', path: 'rules.wallMm', value: '3' },
+    ]);
+
+    expect(result.applied).toEqual([]);
+    expect(result.rejected.length).toBe(2);
+    expect(result.rejected[0].reason).toContain('flat');
+    expect(result.rejected[1].reason).toContain('numérique');
+  });
+});

@@ -6,11 +6,12 @@ import { ChatService, DEFAULT_CHAT_CONFIG, type ChatRequest } from './service';
 
 describe('ChatPanelComponent', () => {
   let sendMessageSpy: jasmine.Spy;
+  let saveConfigSpy: jasmine.Spy;
 
   const chatMock = {
     sendMessage: (...args: unknown[]) => sendMessageSpy(...args),
     getConfig: () => DEFAULT_CHAT_CONFIG,
-    saveConfig: (patch: Record<string, unknown>) => ({ ...DEFAULT_CHAT_CONFIG, ...patch }),
+    saveConfig: (...args: unknown[]) => saveConfigSpy(...args),
   };
 
   function createComponent() {
@@ -21,6 +22,9 @@ describe('ChatPanelComponent', () => {
 
   beforeEach(async () => {
     sendMessageSpy = jasmine.createSpy('sendMessage');
+    saveConfigSpy = jasmine
+      .createSpy('saveConfig')
+      .and.callFake((patch: Record<string, unknown>) => ({ ...DEFAULT_CHAT_CONFIG, ...patch }));
     await TestBed.configureTestingModule({
       imports: [ChatPanelComponent],
       providers: [{ provide: ChatService, useValue: chatMock }],
@@ -149,5 +153,34 @@ describe('ChatPanelComponent', () => {
     expect(component.explanation()).toContain('Une paroi plus épaisse résiste mieux.');
     const text = (fixture.nativeElement as HTMLElement).textContent ?? '';
     expect(text).toContain('Explication');
+  });
+
+  it('saves endpoint settings from the UI', () => {
+    const fixture = createComponent();
+    const component = fixture.componentInstance;
+
+    component.baseUrlDraft = 'http://localhost:9999/v1';
+    component.modelDraft = 'local-model';
+    component.timeoutDraft = '30';
+    component.saveSettings();
+
+    expect(saveConfigSpy).toHaveBeenCalledWith({
+      baseUrl: 'http://localhost:9999/v1',
+      model: 'local-model',
+      timeoutMs: 30_000,
+    });
+    expect(component.config().model).toBe('local-model');
+    expect(component.showSettings()).toBeFalse();
+  });
+
+  it('refuses an invalid timeout without saving', () => {
+    const fixture = createComponent();
+    const component = fixture.componentInstance;
+
+    component.timeoutDraft = '0';
+    component.saveSettings();
+
+    expect(saveConfigSpy).not.toHaveBeenCalled();
+    expect(component.settingsError()).toContain('positif');
   });
 });

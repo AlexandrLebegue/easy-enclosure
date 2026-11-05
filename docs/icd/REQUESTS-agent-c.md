@@ -13,7 +13,7 @@ panneau latéral existant, et connecter sa spec à l'état applicatif.
 **Suggestion d'intégration** :
 
 ```ts
-import { ChatPanelComponent } from './velxio/chat/chat-panel.component';
+import { ChatPanelComponent } from './velxio/chat';
 
 @Component({
   imports: [RendererComponent, SidebarComponent, ChatPanelComponent],

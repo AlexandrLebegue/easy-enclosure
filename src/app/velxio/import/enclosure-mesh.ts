@@ -5,10 +5,10 @@ import { serialize as serializeStl } from '@jscad/stl-serializer';
 
 import { base } from '../../core/enclosure/base';
 import { lid } from '../../core/enclosure/lid';
-import { pcbMountsOnBase } from '../../core/enclosure/pcbmount';
 import { DEFAULT_PARAMS, cloneParams, type Hole, type Params } from '../../core/params';
 import type { Cutout } from '../model/component.types';
 import type { EnclosureSpec } from '../model/enclosure.types';
+import { buildSupportGeometry } from '../supports/support-geometry';
 
 const LID_SPACING_MM = 5;
 
@@ -68,10 +68,8 @@ export const enclosureSpecToParams = (spec: EnclosureSpec): Params => {
   params.internalWalls = [];
   params.cableClamps = [];
   params.wallMounts = false;
-  params.lidScrews = false;
   params.dinRailMount = false;
   params.showDinRailMount = false;
-  params.snapFit = { ...params.snapFit, enabled: false };
   params.pcbPreview = { ...params.pcbPreview, enabled: false };
   params.baseBedChamfer = 0;
   params.lidBedChamfer = 0;
@@ -80,6 +78,23 @@ export const enclosureSpecToParams = (spec: EnclosureSpec): Params => {
   params.showLid = true;
   params.showGrid = false;
   params.measurementSystem = 'metric';
+
+  switch (spec.lid.type) {
+    case 'screw-heat-set':
+      params.lidScrews = true;
+      params.lidScrewHoleType = 'blind';
+      params.lidScrewHoleDepth = clamp(outer.heightMm - rules.floorMm - 1, 0.5, 10);
+      break;
+    case 'screw-nut':
+      params.lidScrews = true;
+      params.lidScrewHoleType = 'nut-pocket';
+      break;
+    case 'snap':
+    default:
+      params.lidScrews = false;
+      params.snapFit = { ...params.snapFit, enabled: true };
+      break;
+  }
 
   return params;
 };
@@ -100,7 +115,7 @@ export const buildEnclosureGeometry = (spec: EnclosureSpec): EnclosureGeometry =
   const params = enclosureSpecToParams(spec);
   const baseGeometry = base(params);
   const lidGeometry = translate([spec.outer.widthMm + LID_SPACING_MM, 0, 0], lid(params));
-  const standoffGeometry = pcbMountsOnBase(params);
+  const standoffGeometry = buildSupportGeometry(spec);
 
   const pieces: Geom3[] = [baseGeometry, lidGeometry];
   if (standoffGeometry) {

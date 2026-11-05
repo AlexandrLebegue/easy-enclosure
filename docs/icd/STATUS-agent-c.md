@@ -37,12 +37,16 @@ plus le montage dans la coquille (`src/app/app.ts`, `src/app/app.html`, `src/app
   - la spec est portée par `ChatStateService` (`chat/chat-state.service.ts`), partagée entre
     l'application et le panneau via `[specInput]` / `(specChange)`.
   - la spec persistée est revalidée au chargement ; une spec invalide est ignorée.
+  - les patches acceptés sont mappés vers le moteur par `enclosureSpecToParams` (agent B) puis
+    transmis à `EnclosureStateService` : l'aperçu 3D se régénère après chaque modification.
+  - les réglages de vue (système d'unités, grille, affichage base/couvercle) sont conservés lors
+    du passage de la spec au moteur.
 - **Historique persistant** (`chat/chat-history.ts`) : conversation et tours restaurés depuis
   `localStorage`, bouton « Effacer » pour purger.
 - **Point d'entrée public** (`chat/index.ts`) : réexporte le composant, le service, l'état,
   `applyPatches`, `validateEnclosureSpec`, `createDefaultSpec` et les types associés.
 - **Tests** (`patches.spec.ts`, `service.spec.ts`, `chat-panel.component.spec.ts`,
-  `chat-state.service.spec.ts`) : 36 tests couvrant patch valide, hors bornes, opération inconnue,
+  `chat-state.service.spec.ts`) : 37 tests couvrant patch valide, hors bornes, opération inconnue,
   découpe dupliquée ou hors face, suppression inconnue, supports valides/inconnus/`none`, mode
   invalide, valeur non numérique, conversation multi-tours, réponse non-JSON, question `ask-user`,
   erreurs HTTP/timeout, persistance des réglages, persistance de l'historique et explication.
@@ -50,7 +54,7 @@ plus le montage dans la coquille (`src/app/app.ts`, `src/app/app.html`, `src/app
 ## Vérifications
 
 - `npm run build` : vert.
-- `npm test` : 255/255 SUCCESS (dont les 36 tests du chat et les tests import/layout/
+- `npm test` : 258/258 SUCCESS (dont les 37 tests du chat et les tests import/layout/
   cutouts/supports de l'agent B).
 - `npm run db:test` : 11/11 SUCCESS (base de composants de l'agent A).
 - Si Chrome n'est pas installé, lancer avec un binaire Chromium disponible :
@@ -58,11 +62,13 @@ plus le montage dans la coquille (`src/app/app.ts`, `src/app/app.html`, `src/app
 
 ## Ce qui reste / à intégrer
 
-- **Pont vers le moteur CAO** : `ChatStateService` expose l'`EnclosureSpec` validée. L'agent B
-  fournit désormais `generateEnclosureStlBlob(spec)` (`velxio/import/enclosure-mesh.ts`) et le
-  pipeline d'import. Il reste à brancher l'état du chat sur ce générateur dans le renderer ;
-  c'est une intégration UI/agent B, hors zone chat. En l'état, le chat met à jour la spec et son
-  résumé dans l'UI, pas le rendu 3D.
+- **Synchronisation inverse sidebar → spec** : les modifications faites dans le panneau de
+  paramètres après un échange avec le chat ne sont pas réinjectées dans l'`EnclosureSpec`. Une
+  nouvelle demande du chat repart de la dernière spec du chat et peut donc écraser ces
+  modifications. Un mapping `Params -> EnclosureSpec` (ou un état unique) reste à décider.
+- **Eau / options hors spec** : l'`EnclosureSpec` ne modélise pas `waterProof`, les clamps, les
+  cloisons internes ni le montage mural ; le passage par `enclosureSpecToParams` désactive ces
+  options. À arbitrer si le chat doit les piloter un jour.
 - **Streaming** : non implémenté, la requête reste non-streamée pour garder une validation
   atomique des patches.
 - **Test réseau réel** : le serveur `http://192.168.1.59:18020/v1` répond `401 Unauthorized`

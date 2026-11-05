@@ -28,14 +28,18 @@ function persistSpec(spec: EnclosureSpec): void {
 }
 
 /**
- * État partagé minimal de la spécification pilotée par le chat.
- * Il reste dans la zone chat : le pont vers le moteur CAO appartient à l'agent B.
+ * État partagé de la spécification pilotée par le chat. La coquille le consomme
+ * via `enclosureSpecToParams` (agent B) pour mettre à jour le moteur JSCAD.
  */
 @Injectable({ providedIn: 'root' })
 export class ChatStateService {
-  private readonly current = signal<EnclosureSpec>(loadPersistedSpec() ?? createDefaultSpec());
+  private readonly persisted = loadPersistedSpec();
+  private readonly current = signal<EnclosureSpec>(
+    this.persisted ? cloneSpec(this.persisted) : createDefaultSpec(),
+  );
 
   readonly spec = this.current.asReadonly();
+  readonly restoredFromStorage = this.persisted !== null;
 
   /** Accepte une spec complète uniquement si elle est valide ; renvoie false sinon. */
   setSpec(next: EnclosureSpec): boolean {

@@ -10,28 +10,15 @@ Demandes de changement hors périmètre, à traiter par le propriétaire du fich
 gauche de `app-renderer`, avec un bouton pour le masquer, et relié à `ChatStateService` via
 `[specInput]` / `(specChange)`. Un mock `app-chat-panel` a été ajouté au test de la coquille.
 
-## R2 — Pont EnclosureSpec → moteur CAO
+## R2 — Pont EnclosureSpec → moteur CAO — RÉSOLU
 
 **Fichiers concernés** : zone agent B (`src/app/velxio/layout/**`, `cutouts/**`, `supports/**`)
 et éventuellement `src/app/velxio/model/**` (ProxBoss).
 
-**Besoin** : consommer l'`EnclosureSpec` exposée par `ChatStateService` et appeler le générateur
-de l'agent B, puis renvoyer la géométrie au renderer. Le chat n'accède volontairement jamais au
-moteur : il ne produit que des `ChatPatch` validés.
-
-**Suggestion** (l'agent B fournit déjà `generateEnclosureStlBlob`) :
-
-```ts
-import { generateEnclosureStlBlob } from '../velxio/import/enclosure-mesh';
-
-const spec = inject(ChatStateService).spec;
-effect(() => {
-  const stl = generateEnclosureStlBlob(spec());
-  // charger le STL dans le renderer
-});
-```
-
-Tant que R2 n'est pas fait, le chat met à jour la spec et son résumé dans l'UI, pas l'aperçu 3D.
+**État** : fait le 2026-11-05. `App.onSpecChange` valide la spec via `ChatStateService`, la mappe
+avec `enclosureSpecToParams` (agent B), puis met à jour `EnclosureStateService` ; le renderer se
+régénère via son effect existant. Une spec persistée est réappliquée au démarrage. Le chat
+continue de ne produire que des `ChatPatch` validés, jamais de géométrie.
 
 ## R3 — Authentification du serveur de modèle par défaut
 

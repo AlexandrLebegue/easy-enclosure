@@ -36,6 +36,13 @@ describe('ChatStateService', () => {
     expect(state.spec().rules.wallMm).toBe(2);
   });
 
+  it('reports whether the spec was restored from storage', () => {
+    expect(new ChatStateService().restoredFromStorage).toBeFalse();
+
+    localStorage.setItem('velxio.chat.spec', JSON.stringify(createDefaultSpec()));
+    expect(new ChatStateService().restoredFromStorage).toBeTrue();
+  });
+
   it('resets to defaults and persists them', () => {
     const state = new ChatStateService();
     const modified = createDefaultSpec();

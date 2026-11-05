@@ -1,6 +1,8 @@
 import { Component, input, output } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
+import { EnclosureStateService } from './core/state/enclosure-state.service';
+import { createDefaultSpec } from './velxio/chat/spec-defaults';
 import type { EnclosureSpec } from './velxio/model/enclosure.types';
 
 @Component({ selector: 'app-renderer', template: '' })
@@ -59,5 +61,34 @@ describe('App', () => {
     const next = { ...app.spec(), mode: 'stacked' as const };
     app.onSpecChange(next);
     expect(app.spec().mode).toBe('stacked');
+  });
+
+  it('applies chat spec changes to the CAD parameters', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    const app = fixture.componentInstance;
+    const state = TestBed.inject(EnclosureStateService);
+
+    const next = createDefaultSpec();
+    next.rules.wallMm = 3.2;
+    next.lid = { type: 'screw-nut' };
+    next.cutouts = [{ id: 'usb', side: 'front', offsetMm: 10, widthMm: 12, heightMm: 6 }];
+    app.onSpecChange(next);
+
+    expect(state.params().wall).toBe(3.2);
+    expect(state.params().lidScrews).toBeTrue();
+    expect(state.params().lidScrewHoleType).toBe('nut-pocket');
+    expect(state.params().holes.length).toBe(1);
+  });
+
+  it('restores a persisted chat spec into the CAD parameters', () => {
+    const persisted = createDefaultSpec();
+    persisted.rules.wallMm = 3.4;
+    localStorage.setItem('velxio.chat.spec', JSON.stringify(persisted));
+
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+
+    expect(TestBed.inject(EnclosureStateService).params().wall).toBe(3.4);
   });
 });

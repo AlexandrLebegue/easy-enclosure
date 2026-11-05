@@ -1,0 +1,202 @@
+<section
+  class="flex h-full min-h-0 flex-col overflow-hidden border-l border-slate-200 bg-slate-50 text-slate-900"
+  aria-label="Assistant boîtier"
+>
+  <header class="flex items-start justify-between gap-3 border-b border-slate-200 px-4 py-3">
+    <div>
+      <h2 class="text-sm font-extrabold uppercase tracking-wider text-slate-600">
+        Assistant boîtier
+      </h2>
+      <p class="mt-1 text-[11px] text-slate-500">
+        Traduit votre demande en paramètres. Ne génère jamais de géométrie.
+      </p>
+    </div>
+    <button
+      type="button"
+      class="rounded border border-slate-300 bg-white px-2 py-1 text-[11px] font-semibold text-slate-600 hover:bg-slate-100"
+      (click)="toggleSettings()"
+    >
+      {{ showSettings() ? 'Fermer' : 'Réglages' }}
+    </button>
+  </header>
+
+  @if (showSettings()) {
+    <div class="space-y-2 border-b border-slate-200 bg-white px-4 py-3">
+      <label class="block text-[11px] font-semibold text-slate-600">
+        Base URL
+        <input
+          type="text"
+          class="mt-1 w-full rounded border border-slate-300 px-2 py-1 text-xs text-slate-800"
+          [value]="baseUrlDraft"
+          (input)="onBaseUrlInput($event)"
+        />
+      </label>
+      <label class="block text-[11px] font-semibold text-slate-600">
+        Modèle
+        <input
+          type="text"
+          class="mt-1 w-full rounded border border-slate-300 px-2 py-1 text-xs text-slate-800"
+          [value]="modelDraft"
+          (input)="onModelInput($event)"
+        />
+      </label>
+      <label class="block text-[11px] font-semibold text-slate-600">
+        Timeout (secondes)
+        <input
+          type="number"
+          min="1"
+          class="mt-1 w-full rounded border border-slate-300 px-2 py-1 text-xs text-slate-800"
+          [value]="timeoutDraft"
+          (input)="onTimeoutInput($event)"
+        />
+      </label>
+      @if (settingsError(); as message) {
+        <p role="alert" class="text-[11px] font-medium text-red-600">{{ message }}</p>
+      }
+      <button
+        type="button"
+        class="w-full rounded bg-slate-800 px-3 py-1.5 text-xs font-semibold text-white hover:bg-slate-700"
+        (click)="saveSettings()"
+      >
+        Enregistrer
+      </button>
+    </div>
+  }
+
+  <div class="border-b border-slate-200 bg-white px-4 py-3">
+    <h3 class="mb-2 text-[11px] font-extrabold uppercase tracking-wider text-slate-500">
+      Spécification courante
+    </h3>
+    <dl class="grid grid-cols-2 gap-x-3 gap-y-1">
+      @for (row of summary(); track row.label) {
+        <div class="flex items-baseline justify-between gap-2">
+          <dt class="text-[11px] text-slate-500">{{ row.label }}</dt>
+          <dd class="text-right text-[11px] font-semibold text-slate-800">{{ row.value }}</dd>
+        </div>
+      }
+    </dl>
+  </div>
+
+  <div class="min-h-0 flex-1 space-y-3 overflow-y-auto px-4 py-3" aria-live="polite">
+    @if (messages().length === 0) {
+      <p class="text-xs leading-relaxed text-slate-500">
+        Décrivez votre besoin, par exemple : « une paroi de 3 mm avec un couvercle à vis et une
+        découpe USB sur la face avant ».
+      </p>
+    }
+
+    @for (entry of messages(); track entry.id) {
+      <article
+        class="rounded-lg border px-3 py-2"
+        [class]="
+          entry.role === 'user'
+            ? 'border-slate-200 bg-white'
+            : entry.role === 'assistant'
+              ? 'border-sky-200 bg-sky-50'
+              : 'border-red-200 bg-red-50'
+        "
+      >
+        <p class="mb-1 text-[10px] font-extrabold uppercase tracking-wider text-slate-500">
+          {{
+            entry.role === 'user' ? 'Vous' : entry.role === 'assistant' ? 'Assistant' : 'Système'
+          }}
+        </p>
+        <p class="whitespace-pre-line text-xs leading-relaxed text-slate-800">{{ entry.text }}</p>
+
+        @if (entry.applied; as applied) {
+          @if (applied.length > 0) {
+            <ul class="mt-2 space-y-1">
+              @for (item of applied; track $index) {
+                <li class="text-[11px] text-emerald-700">
+                  <span class="font-semibold">Appliqué</span> · {{ item.description }}
+                </li>
+              }
+            </ul>
+          }
+        }
+
+        @if (entry.rejected; as rejected) {
+          @if (rejected.length > 0) {
+            <ul class="mt-2 space-y-1">
+              @for (item of rejected; track $index) {
+                <li class="text-[11px] text-red-700">
+                  <span class="font-semibold">Rejeté</span> · {{ item.patch.op }} —
+                  {{ item.reason }}
+                </li>
+              }
+            </ul>
+          }
+        }
+
+        @if (entry.patches; as patches) {
+          @if (patches.length > 0) {
+            <div class="mt-2 flex flex-wrap gap-1">
+              @for (patch of patches; track $index) {
+                <code class="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] text-slate-600">
+                  {{ patch.op }}{{ patch.path ? ' · ' + patch.path : '' }}
+                </code>
+              }
+            </div>
+          }
+        }
+      </article>
+    }
+
+    @if (pendingQuestion(); as question) {
+      <div role="status" class="rounded-lg border border-amber-300 bg-amber-50 px-3 py-2">
+        <p class="text-[10px] font-extrabold uppercase tracking-wider text-amber-700">
+          Question de l’assistant
+        </p>
+        <p class="mt-1 text-xs font-medium text-amber-900">{{ question }}</p>
+      </div>
+    }
+
+    @if (explanation(); as text) {
+      <div class="rounded-lg border border-slate-300 bg-white px-3 py-2">
+        <p class="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">
+          Explication
+        </p>
+        <p class="mt-1 whitespace-pre-line text-xs leading-relaxed text-slate-700">{{ text }}</p>
+      </div>
+    }
+
+    @if (error(); as message) {
+      <p
+        role="alert"
+        class="rounded-lg border border-red-300 bg-red-50 px-3 py-2 text-xs text-red-700"
+      >
+        {{ message }}
+      </p>
+    }
+  </div>
+
+  <form
+    class="border-t border-slate-200 bg-white px-4 py-3"
+    (submit)="$event.preventDefault(); sendMessage()"
+  >
+    <textarea
+      rows="2"
+      class="w-full resize-none rounded border border-slate-300 px-2 py-1.5 text-xs text-slate-800 focus:border-slate-500 focus:outline-none"
+      placeholder="Décrivez le boîtier souhaité…"
+      [value]="draft"
+      (input)="onDraftInput($event)"
+    ></textarea>
+    <div class="mt-2 flex items-center justify-between gap-2">
+      <button
+        type="button"
+        class="rounded border border-slate-300 bg-white px-2 py-1 text-[11px] font-semibold text-slate-600 hover:bg-slate-100 disabled:opacity-40"
+        [disabled]="!canExplain()"
+        (click)="explainLast()"
+      >
+        Expliquer le choix
+      </button>
+      <button
+        type="submit"
+        class="rounded bg-slate-800 px-3 py-1.5 text-xs font-semibold text-white hover:bg-slate-700 disabled:opacity-40"
+        [disabled]="busy() || draft.trim().length === 0"
+      >
+        {{ busy() ? 'Envoi…' : 'Envoyer' }}
+      </button>
+    </div>
+  </form>
+</section>

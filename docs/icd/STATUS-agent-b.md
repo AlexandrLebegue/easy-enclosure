@@ -1,7 +1,8 @@
 # STATUS — Agent B (import Velxio + génération de boîtier)
 
-Branche : `agent-b/enclosure`, basée sur `velxio` (`0dd8354`).
-Date : 2026-11-05 (mise à jour après ajout keepouts, supports typés, lid et pipeline).
+Branche : `agent-b/enclosure`, basée sur `velxio` (`0dd8354`), avec merge de
+`agent-a/components` (`27b15a6`, commit de merge `5aff747`).
+Date : 2026-11-05 (mise à jour après merge de la base Agent A).
 
 ## Ce qui marche
 
@@ -40,20 +41,26 @@ Date : 2026-11-05 (mise à jour après ajout keepouts, supports typés, lid et p
 - **Pipeline réutilisable** (`src/app/velxio/import/enclosure-pipeline.ts`)
   - `importAndGenerateEnclosure(zip, options)` fait zip → `BoardModel` → `EnclosureSpec` → STL
     en un appel, prêt à être branché sur l'UI.
+- **Intégration base Agent A** (merge `5aff747`)
+  - 127 entrées dans `data/components.index.json`, 120/120 `partType` Velxio couverts ;
+  - API réelle testée : `POST /api/parts/resolve` renvoie les 5 types de l'exemple et
+    `missing: ["unknown-widget"]` pour le type inconnu ;
+  - `npm run db:coverage` : 0 manquant, 107 estimés, 7 extras (alias/variantes).
 - **Démo / tests**
   - zip d'exemple en mémoire : 2 boards + 3 composants (`example-project.ts`) ;
   - cas `partType` inconnu, cas `stacked`, vérification des dimensions extérieures et
     absence de collision (`*.spec.ts`).
   - `npm run build` : vert.
   - `npm test` (Chrome Headless) : **218 SUCCESS**, dont les nouveaux tests Agent B.
+  - `npm run db:test` : **11 SUCCESS**.
   - Dimensions vérifiées sur l'exemple : `flat` = 132,6 × 24,6 × 27 mm ;
     `stacked` = 44,6 × 24,6 × 74 mm. STL produit > 1 ko.
 
 ## Ce qui reste / limites connues
 
-- La base de composants Agent A n'est pas encore présente sur `velxio` : aucun
-  `data/components.index.json` réel. Le repli local est implémenté et testé avec un index
-  simulé ; dès qu'Agent A publie l'index, l'import l'utilisera sans changement de code.
+- Le repli local lit `data/components.index.json` à la racine du workspace. En build Angular
+  statique, `data/**` n'est pas dans les assets : sans API `db:serve`, le repli ne trouvera
+  pas l'index. Voir `REQUESTS-agent-b.md` R2.
 - Pas de branchement UI (hors périmètre Agent B) : les services sont utilisables depuis
   l'application, mais aucun bouton « Importer un zip » n'est ajouté.
 - `Cutout` ne porte pas d'offset vertical : les découpes sont centrées verticalement sur la
@@ -68,6 +75,4 @@ Date : 2026-11-05 (mise à jour après ajout keepouts, supports typés, lid et p
 
 ## Blocages
 
-Aucun blocage bloquant. Dépendance attendue : publication par Agent A de
-`data/components.index.json` et de `data/components/**` pour couvrir les 120 `partType`
-Velxio recensés dans `data/velxio-types.json`.
+Aucun blocage. La dépendance Agent A (base + index + API) est mergée et vérifiée.

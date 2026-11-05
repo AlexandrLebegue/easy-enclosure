@@ -17,13 +17,15 @@ quand le champ est absent.
 
 Impact : additif et rétrocompatible ; aucun changement requis dans les données existantes.
 
-## R2 — Publication de l'index de composants (dépendance Agent A)
+## R2 — Hébergement statique du repli local (résolu côté données, reste côté build)
 
-Fichier concerné : `data/components.index.json`.
+Fichiers concernés : `angular.json` (assets) ou serveur statique.
 
-Contexte : le contrat d'import lit l'index local en repli de l'API HTTP. Sur la branche
-`velxio` actuelle, l'index et les fichiers `data/components/**` ne sont pas encore publiés.
+Contexte : l'index et les 127 fichiers `data/components/**` sont désormais présents et
+l'API `npm run db:serve` fonctionne. Le repli local lit toutefois `data/components.index.json`
+à la racine du workspace ; en build Angular statique, `data/**` n'est pas copié dans `dist`,
+donc le repli échoue si l'API n'est pas lancée.
 
-Demande : publier l'index généré par `npm run db:build` et les fichiers de composants pour que
-les 120 `partType` de `data/velxio-types.json` soient résolvables hors API. Aucun changement
-de code Agent B n'est nécessaire.
+Demande : ajouter `data/components.index.json` et `data/components/**` aux assets Angular
+(ou servir ces fichiers depuis le même serveur que l'application). Aucun changement de code
+Agent B n'est nécessaire.

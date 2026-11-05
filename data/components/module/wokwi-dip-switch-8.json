@@ -1,0 +1,21 @@
+{
+  "partType": "wokwi-dip-switch-8",
+  "displayName": "DIP switch 8 positions",
+  "category": "module",
+  "envelope": {
+    "widthMm": 22,
+    "depthMm": 9.5,
+    "heightMm": 7
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://www.mouser.com/datasheet/2/242/nds_series-1174175.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Standard 8-position DIP switch, 2.54 mm pitch."
+}

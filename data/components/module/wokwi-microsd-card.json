@@ -1,0 +1,20 @@
+{
+  "partType": "wokwi-microsd-card",
+  "displayName": "MicroSD card module",
+  "category": "module",
+  "envelope": {
+    "widthMm": 43,
+    "depthMm": 25,
+    "heightMm": 5
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Common SPI microSD breakout with level shifter."
+}

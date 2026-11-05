@@ -1,0 +1,21 @@
+{
+  "partType": "wokwi-resistor",
+  "displayName": "Resistor (axial, 0.25 W)",
+  "category": "passive",
+  "envelope": {
+    "widthMm": 6.3,
+    "depthMm": 2.3,
+    "heightMm": 2.3
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "library": "kicad:Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal",
+    "license": "CC-BY-SA-4.0",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Derived from the KiCad library footprint; component tolerance and lead bend not included."
+}

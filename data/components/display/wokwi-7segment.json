@@ -1,0 +1,21 @@
+{
+  "partType": "wokwi-7segment",
+  "displayName": "7-segment display 0.56 inch",
+  "category": "display",
+  "envelope": {
+    "widthMm": 19,
+    "depthMm": 12.7,
+    "heightMm": 8
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://www.vishay.com/docs/83111/tdsa51.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "datasheet",
+  "schemaVersion": 1,
+  "notes": "Single-digit through-hole 0.56 inch display. Pins are not included in the envelope."
+}

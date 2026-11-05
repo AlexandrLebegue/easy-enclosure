@@ -1,0 +1,41 @@
+{
+  "partType": "wokwi-biaxial-stepper",
+  "displayName": "Biaxial stepper motor",
+  "category": "actuator",
+  "envelope": {
+    "widthMm": 42.3,
+    "depthMm": 42.3,
+    "heightMm": 48
+  },
+  "mountHoles": [
+    {
+      "xMm": 5.5,
+      "yMm": 5.5,
+      "diameterMm": 3.2
+    },
+    {
+      "xMm": 36.8,
+      "yMm": 5.5,
+      "diameterMm": 3.2
+    },
+    {
+      "xMm": 5.5,
+      "yMm": 36.8,
+      "diameterMm": 3.2
+    },
+    {
+      "xMm": 36.8,
+      "yMm": 36.8,
+      "diameterMm": 3.2
+    }
+  ],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Assumed NEMA 17 biaxial body with a shaft on both ends. Verify the actual motor datasheet."
+}

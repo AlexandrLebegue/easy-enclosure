@@ -1,0 +1,20 @@
+{
+  "partType": "wokwi-membrane-keypad",
+  "displayName": "Membrane keypad 4x4",
+  "category": "module",
+  "envelope": {
+    "widthMm": 69,
+    "depthMm": 77,
+    "heightMm": 2
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Typical 4x4 membrane keypad with adhesive backing."
+}

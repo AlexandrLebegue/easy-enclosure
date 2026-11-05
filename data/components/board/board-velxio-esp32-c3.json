@@ -1,0 +1,38 @@
+{
+  "partType": "board-velxio-esp32-c3",
+  "displayName": "ESP32-C3-DevKitM-1",
+  "category": "board",
+  "envelope": {
+    "widthMm": 38.91,
+    "depthMm": 25.4,
+    "heightMm": 8
+  },
+  "mountHoles": [],
+  "cutouts": [
+    {
+      "id": "micro-usb",
+      "side": "left",
+      "offsetMm": 8.2,
+      "widthMm": 9,
+      "heightMm": 4,
+      "label": "Micro-USB"
+    }
+  ],
+  "keepouts": [
+    {
+      "side": "top",
+      "offsetMm": 0,
+      "widthMm": 38.91,
+      "heightMm": 12,
+      "reason": "PCB antenna keepout"
+    }
+  ],
+  "provenance": {
+    "url": "https://dl.espressif.com/dl/schematics/DIMENSION_ESP32-C3-DEVKITM-1_V1_20200915AA.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "datasheet",
+  "schemaVersion": 1,
+  "notes": "PCB outline 38.91 x 25.4 mm from the Espressif dimension drawing. Height includes the micro-USB connector; pin headers are excluded."
+}

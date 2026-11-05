@@ -1,0 +1,41 @@
+{
+  "partType": "wokwi-ks2e-m-dc5",
+  "displayName": "KS2E-M-DC5 relay",
+  "category": "actuator",
+  "envelope": {
+    "widthMm": 50,
+    "depthMm": 26,
+    "heightMm": 20
+  },
+  "mountHoles": [
+    {
+      "xMm": 3,
+      "yMm": 3,
+      "diameterMm": 3
+    },
+    {
+      "xMm": 47,
+      "yMm": 3,
+      "diameterMm": 3
+    },
+    {
+      "xMm": 3,
+      "yMm": 23,
+      "diameterMm": 3
+    },
+    {
+      "xMm": 47,
+      "yMm": 23,
+      "diameterMm": 3
+    }
+  ],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Relay module values reused for this partType; verify the exact KS2E breakout."
+}

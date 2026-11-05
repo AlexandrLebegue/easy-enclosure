@@ -1,0 +1,41 @@
+{
+  "partType": "wokwi-hx711",
+  "displayName": "HX711 load cell amplifier",
+  "category": "sensor",
+  "envelope": {
+    "widthMm": 34,
+    "depthMm": 20,
+    "heightMm": 5
+  },
+  "mountHoles": [
+    {
+      "xMm": 3,
+      "yMm": 3,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 31,
+      "yMm": 3,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 3,
+      "yMm": 17,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 31,
+      "yMm": 17,
+      "diameterMm": 2.5
+    }
+  ],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Common green HX711 breakout board."
+}

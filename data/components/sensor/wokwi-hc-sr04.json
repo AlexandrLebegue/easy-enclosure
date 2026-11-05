@@ -1,0 +1,42 @@
+{
+  "partType": "wokwi-hc-sr04",
+  "displayName": "HC-SR04 ultrasonic distance sensor",
+  "category": "sensor",
+  "envelope": {
+    "widthMm": 45,
+    "depthMm": 20,
+    "heightMm": 15
+  },
+  "mountHoles": [
+    {
+      "xMm": 5,
+      "yMm": 5,
+      "diameterMm": 2
+    },
+    {
+      "xMm": 40,
+      "yMm": 5,
+      "diameterMm": 2
+    },
+    {
+      "xMm": 5,
+      "yMm": 15,
+      "diameterMm": 2
+    },
+    {
+      "xMm": 40,
+      "yMm": 15,
+      "diameterMm": 2
+    }
+  ],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "datasheet",
+  "schemaVersion": 1,
+  "notes": "Height includes the two transducers. Mounting hole coordinates estimated."
+}

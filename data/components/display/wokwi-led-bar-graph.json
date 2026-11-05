@@ -1,0 +1,21 @@
+{
+  "partType": "wokwi-led-bar-graph",
+  "displayName": "10-segment LED bar graph",
+  "category": "display",
+  "envelope": {
+    "widthMm": 25.4,
+    "depthMm": 10.2,
+    "heightMm": 8
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://www.kingbrightusa.com/images/catalog/SPEC/DC-10GWA.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "datasheet",
+  "schemaVersion": 1,
+  "notes": "Standard 10-segment bar graph, 2.54 mm pin pitch."
+}

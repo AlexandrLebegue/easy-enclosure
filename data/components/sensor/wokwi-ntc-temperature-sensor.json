@@ -1,0 +1,41 @@
+{
+  "partType": "wokwi-ntc-temperature-sensor",
+  "displayName": "NTC temperature sensor module",
+  "category": "sensor",
+  "envelope": {
+    "widthMm": 32,
+    "depthMm": 20,
+    "heightMm": 8
+  },
+  "mountHoles": [
+    {
+      "xMm": 3,
+      "yMm": 3,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 29,
+      "yMm": 3,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 3,
+      "yMm": 17,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 29,
+      "yMm": 17,
+      "diameterMm": 2.5
+    }
+  ],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "KY-013 style NTC module."
+}

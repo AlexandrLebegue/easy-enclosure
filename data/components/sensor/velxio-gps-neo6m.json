@@ -1,0 +1,42 @@
+{
+  "partType": "velxio-gps-neo6m",
+  "displayName": "NEO-6M GPS module",
+  "category": "sensor",
+  "envelope": {
+    "widthMm": 25.5,
+    "depthMm": 25.5,
+    "heightMm": 8
+  },
+  "mountHoles": [
+    {
+      "xMm": 2.5,
+      "yMm": 2.5,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 23,
+      "yMm": 2.5,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 2.5,
+      "yMm": 23,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 23,
+      "yMm": 23,
+      "diameterMm": 2.5
+    }
+  ],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://www.u-blox.com/sites/default/files/products/documents/NEO-6_DataSheet_%28GPS.G6-HW-09005%29.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "GY-NEO6MV2 style breakout with ceramic antenna. Antenna keepout above the module."
+}

@@ -1,0 +1,21 @@
+{
+  "partType": "wokwi-dht22",
+  "displayName": "DHT22 temperature/humidity sensor",
+  "category": "sensor",
+  "envelope": {
+    "widthMm": 15.1,
+    "depthMm": 25.1,
+    "heightMm": 7.7
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://cdn-shop.adafruit.com/datasheets/Digital+humidity+and+temperature+sensor+AM2302.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "datasheet",
+  "schemaVersion": 1,
+  "notes": "Sensor body only. Pins extend 2.54 mm pitch below the body; no mounting holes."
+}

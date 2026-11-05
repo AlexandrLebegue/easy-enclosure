@@ -1,0 +1,42 @@
+{
+  "partType": "wokwi-ili9341",
+  "displayName": "ILI9341 TFT 2.4 inch SPI",
+  "category": "display",
+  "envelope": {
+    "widthMm": 60,
+    "depthMm": 42,
+    "heightMm": 5
+  },
+  "mountHoles": [
+    {
+      "xMm": 3,
+      "yMm": 3,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 57,
+      "yMm": 3,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 3,
+      "yMm": 39,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 57,
+      "yMm": 39,
+      "diameterMm": 2.5
+    }
+  ],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Common 2.4 inch SPI breakout with SD card slot. Height excludes the header pins."
+}

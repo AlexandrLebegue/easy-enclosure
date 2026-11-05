@@ -1,0 +1,21 @@
+{
+  "partType": "wokwi-pushbutton-6mm",
+  "displayName": "Tactile pushbutton 6 mm",
+  "category": "module",
+  "envelope": {
+    "widthMm": 6,
+    "depthMm": 6,
+    "heightMm": 5
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://www.e-switch.com/wp-content/uploads/2021/05/TL3305-Series.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Common 6 x 6 mm through-hole tactile switch."
+}

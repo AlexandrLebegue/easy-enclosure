@@ -1,0 +1,42 @@
+{
+  "partType": "wokwi-lcd1602",
+  "displayName": "LCD 1602 character module",
+  "category": "display",
+  "envelope": {
+    "widthMm": 80,
+    "depthMm": 36,
+    "heightMm": 12
+  },
+  "mountHoles": [
+    {
+      "xMm": 2.5,
+      "yMm": 2.5,
+      "diameterMm": 3
+    },
+    {
+      "xMm": 77.5,
+      "yMm": 2.5,
+      "diameterMm": 3
+    },
+    {
+      "xMm": 2.5,
+      "yMm": 33.5,
+      "diameterMm": 3
+    },
+    {
+      "xMm": 77.5,
+      "yMm": 33.5,
+      "diameterMm": 3
+    }
+  ],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://www.vishay.com/docs/37480/lcd-016m002a.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "datasheet",
+  "schemaVersion": 1,
+  "notes": "Standard 16x2 HD44780 module with 16-pin header. Height includes the header and backlight PCB."
+}

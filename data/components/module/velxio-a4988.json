@@ -1,0 +1,20 @@
+{
+  "partType": "velxio-a4988",
+  "displayName": "A4988 stepper driver module",
+  "category": "module",
+  "envelope": {
+    "widthMm": 15.2,
+    "depthMm": 20.3,
+    "heightMm": 3
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Pololu A4988 carrier. Height excludes the optional heat sink and header pins."
+}

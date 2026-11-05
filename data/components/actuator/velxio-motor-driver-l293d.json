@@ -1,0 +1,42 @@
+{
+  "partType": "velxio-motor-driver-l293d",
+  "displayName": "L293D motor driver module",
+  "category": "actuator",
+  "envelope": {
+    "widthMm": 43,
+    "depthMm": 43,
+    "heightMm": 27
+  },
+  "mountHoles": [
+    {
+      "xMm": 3,
+      "yMm": 3,
+      "diameterMm": 3
+    },
+    {
+      "xMm": 40,
+      "yMm": 3,
+      "diameterMm": 3
+    },
+    {
+      "xMm": 3,
+      "yMm": 40,
+      "diameterMm": 3
+    },
+    {
+      "xMm": 40,
+      "yMm": 40,
+      "diameterMm": 3
+    }
+  ],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://www.ti.com/lit/ds/symlink/l293d.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Typical L293D shield/module footprint including screw terminals and heat sink. Verify the module variant."
+}

@@ -1,0 +1,21 @@
+{
+  "partType": "wokwi-servo",
+  "displayName": "SG90 micro servo",
+  "category": "actuator",
+  "envelope": {
+    "widthMm": 22.8,
+    "depthMm": 12.6,
+    "heightMm": 22.5
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "datasheet",
+  "schemaVersion": 1,
+  "notes": "Body dimensions 22.8 x 12.6 x 22.5 mm. The mounting flanges and horn extend beyond this body, so add clearance for them."
+}

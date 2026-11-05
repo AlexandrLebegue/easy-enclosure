@@ -1,0 +1,21 @@
+{
+  "partType": "wokwi-potentiometer",
+  "displayName": "Rotary potentiometer 10 kOhm",
+  "category": "module",
+  "envelope": {
+    "widthMm": 9.5,
+    "depthMm": 9.5,
+    "heightMm": 7
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://www.bourns.com/docs/Product-Datasheets/PDB12.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Body 9.5 mm diameter, shaft extends beyond the 7 mm body height. Panel-mount bushing not included."
+}

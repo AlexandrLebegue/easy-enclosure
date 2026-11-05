@@ -1,0 +1,21 @@
+{
+  "partType": "wokwi-bjt-2n3055",
+  "displayName": "NPN power transistor 2N3055 (TO-3)",
+  "category": "passive",
+  "envelope": {
+    "widthMm": 39,
+    "depthMm": 26,
+    "heightMm": 9
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "library": "kicad:Package_TO_SOT_THT:TO-3",
+    "license": "CC-BY-SA-4.0",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Derived from the KiCad library footprint; component tolerance and lead bend not included."
+}

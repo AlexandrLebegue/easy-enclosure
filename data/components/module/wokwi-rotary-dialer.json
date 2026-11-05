@@ -1,0 +1,20 @@
+{
+  "partType": "wokwi-rotary-dialer",
+  "displayName": "Rotary dialer module",
+  "category": "module",
+  "envelope": {
+    "widthMm": 32,
+    "depthMm": 20,
+    "heightMm": 20
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Rotary encoder with dial, similar to KY-040."
+}

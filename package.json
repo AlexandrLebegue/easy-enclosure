@@ -1,6 +1,6 @@
 {
   "name": "easy-enclosure",
-  "version": "1.7.1",
+  "version": "1.7.6",
   "private": true,
   "homepage": "https://easyenclosure.org",
   "prettier": {
@@ -28,6 +28,10 @@
     "deploy": "gh-pages -d dist/angular-app/browser",
     "prepare": "husky",
     "bump:version": "node scripts/bump-version.js",
+    "db:build": "node scripts/db/build.js",
+    "db:coverage": "node scripts/db/coverage.js",
+    "db:serve": "node scripts/db/run-server.js",
+    "db:test": "node --test scripts/db/tests/*.test.js",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
@@ -41,6 +45,7 @@
     "@jscad/modeling": "^2.13.0",
     "@jscad/regl-renderer": "^2.6.15",
     "@jscad/stl-serializer": "^2.1.23",
+    "express": "^4.22.3",
     "file-saver": "^2.0.5",
     "jszip": "^3.10.2",
     "rxjs": "~7.8.0",
@@ -52,9 +57,11 @@
     "@angular/cli": "^20.3.22",
     "@angular/compiler-cli": "^20.3.0",
     "@tailwindcss/postcss": "^4.2.2",
+    "@types/express": "^4.17.25",
     "@types/file-saver": "^2.0.7",
     "@types/jasmine": "~5.1.0",
     "@types/jszip": "^3.4.0",
+    "@types/node": "^20.19.43",
     "gh-pages": "^5.0.0",
     "husky": "^9.1.7",
     "jasmine-core": "~5.9.0",

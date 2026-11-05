@@ -1,0 +1,41 @@
+{
+  "partType": "wokwi-analog-joystick",
+  "displayName": "Analog joystick module",
+  "category": "module",
+  "envelope": {
+    "widthMm": 38,
+    "depthMm": 34,
+    "heightMm": 30
+  },
+  "mountHoles": [
+    {
+      "xMm": 3,
+      "yMm": 3,
+      "diameterMm": 3
+    },
+    {
+      "xMm": 35,
+      "yMm": 3,
+      "diameterMm": 3
+    },
+    {
+      "xMm": 3,
+      "yMm": 31,
+      "diameterMm": 3
+    },
+    {
+      "xMm": 35,
+      "yMm": 31,
+      "diameterMm": 3
+    }
+  ],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "KY-023 style module. Height includes the joystick knob at rest."
+}

@@ -1,0 +1,41 @@
+{
+  "partType": "velxio-relay",
+  "displayName": "Relay module 5 V",
+  "category": "actuator",
+  "envelope": {
+    "widthMm": 50,
+    "depthMm": 26,
+    "heightMm": 20
+  },
+  "mountHoles": [
+    {
+      "xMm": 3,
+      "yMm": 3,
+      "diameterMm": 3
+    },
+    {
+      "xMm": 47,
+      "yMm": 3,
+      "diameterMm": 3
+    },
+    {
+      "xMm": 3,
+      "yMm": 23,
+      "diameterMm": 3
+    },
+    {
+      "xMm": 47,
+      "yMm": 23,
+      "diameterMm": 3
+    }
+  ],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Typical SRD-05VDC-SL-C relay breakout. Screw terminal and relay body dominate the height."
+}

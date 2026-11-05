@@ -1,0 +1,20 @@
+{
+  "partType": "wokwi-photodiode",
+  "displayName": "Photodiode 5 mm",
+  "category": "sensor",
+  "envelope": {
+    "widthMm": 5,
+    "depthMm": 5,
+    "heightMm": 4.5
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Through-hole 5 mm photodiode; leads not included in the envelope."
+}

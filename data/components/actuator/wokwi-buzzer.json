@@ -1,0 +1,21 @@
+{
+  "partType": "wokwi-buzzer",
+  "displayName": "Piezo buzzer 12 mm",
+  "category": "actuator",
+  "envelope": {
+    "widthMm": 12,
+    "depthMm": 12,
+    "heightMm": 9.5
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://www.murata.com/en-global/products/sound/piezoelectric/sounder",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Common 12 mm active buzzer, 2.54 mm pin pitch. Height includes the resonator."
+}

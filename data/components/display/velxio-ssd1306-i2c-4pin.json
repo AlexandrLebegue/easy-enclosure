@@ -1,0 +1,42 @@
+{
+  "partType": "velxio-ssd1306-i2c-4pin",
+  "displayName": "SSD1306 OLED I2C 4-pin",
+  "category": "display",
+  "envelope": {
+    "widthMm": 27.3,
+    "depthMm": 27.3,
+    "heightMm": 4.5
+  },
+  "mountHoles": [
+    {
+      "xMm": 2.5,
+      "yMm": 2.5,
+      "diameterMm": 2.2
+    },
+    {
+      "xMm": 24.8,
+      "yMm": 2.5,
+      "diameterMm": 2.2
+    },
+    {
+      "xMm": 2.5,
+      "yMm": 24.8,
+      "diameterMm": 2.2
+    },
+    {
+      "xMm": 24.8,
+      "yMm": 24.8,
+      "diameterMm": 2.2
+    }
+  ],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "datasheet",
+  "schemaVersion": 1,
+  "notes": "Square 0.96 inch I2C variant with GND/VCC/SCL/SDA pads or header."
+}

@@ -1,0 +1,42 @@
+{
+  "partType": "wokwi-mpu6050",
+  "displayName": "MPU6050 gyro/accelerometer module",
+  "category": "sensor",
+  "envelope": {
+    "widthMm": 21,
+    "depthMm": 16,
+    "heightMm": 3.5
+  },
+  "mountHoles": [
+    {
+      "xMm": 2.5,
+      "yMm": 2.5,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 18.5,
+      "yMm": 2.5,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 2.5,
+      "yMm": 13.5,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 18.5,
+      "yMm": 13.5,
+      "diameterMm": 2.5
+    }
+  ],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "GY-521 breakout dimensions; chip datasheet linked."
+}

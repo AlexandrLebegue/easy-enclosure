@@ -1,0 +1,20 @@
+{
+  "partType": "wokwi-neopixel-matrix",
+  "displayName": "NeoPixel 4x4 matrix",
+  "category": "module",
+  "envelope": {
+    "widthMm": 40,
+    "depthMm": 40,
+    "heightMm": 3
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "4x4 WS2812B matrix; envelope is the PCB bounding square."
+}

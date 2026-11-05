@@ -1,0 +1,506 @@
+{
+  "generatedAt": "2026-11-05T18:29:48.460Z",
+  "count": 100,
+  "byPartType": {
+    "velxio-motor-driver-l293d": {
+      "file": "data/components/actuator/velxio-motor-driver-l293d.json",
+      "category": "actuator",
+      "confidence": "estimated"
+    },
+    "velxio-relay": {
+      "file": "data/components/actuator/velxio-relay.json",
+      "category": "actuator",
+      "confidence": "estimated"
+    },
+    "wokwi-biaxial-stepper": {
+      "file": "data/components/actuator/wokwi-biaxial-stepper.json",
+      "category": "actuator",
+      "confidence": "estimated"
+    },
+    "wokwi-buzzer": {
+      "file": "data/components/actuator/wokwi-buzzer.json",
+      "category": "actuator",
+      "confidence": "estimated"
+    },
+    "wokwi-ks2e-m-dc5": {
+      "file": "data/components/actuator/wokwi-ks2e-m-dc5.json",
+      "category": "actuator",
+      "confidence": "estimated"
+    },
+    "wokwi-servo": {
+      "file": "data/components/actuator/wokwi-servo.json",
+      "category": "actuator",
+      "confidence": "datasheet"
+    },
+    "wokwi-stepper-motor": {
+      "file": "data/components/actuator/wokwi-stepper-motor.json",
+      "category": "actuator",
+      "confidence": "estimated"
+    },
+    "wokwi-arduino-mega": {
+      "file": "data/components/board/wokwi-arduino-mega.json",
+      "category": "board",
+      "confidence": "datasheet"
+    },
+    "wokwi-arduino-nano": {
+      "file": "data/components/board/wokwi-arduino-nano.json",
+      "category": "board",
+      "confidence": "datasheet"
+    },
+    "wokwi-arduino-uno": {
+      "file": "data/components/board/wokwi-arduino-uno.json",
+      "category": "board",
+      "confidence": "datasheet"
+    },
+    "wokwi-esp32-devkit-v1": {
+      "file": "data/components/board/wokwi-esp32-devkit-v1.json",
+      "category": "board",
+      "confidence": "estimated"
+    },
+    "wokwi-franzininho": {
+      "file": "data/components/board/wokwi-franzininho.json",
+      "category": "board",
+      "confidence": "estimated"
+    },
+    "wokwi-nano-rp2040-connect": {
+      "file": "data/components/board/wokwi-nano-rp2040-connect.json",
+      "category": "board",
+      "confidence": "datasheet"
+    },
+    "velxio-epaper": {
+      "file": "data/components/display/velxio-epaper.json",
+      "category": "display",
+      "confidence": "estimated"
+    },
+    "velxio-ssd1306-i2c-4pin": {
+      "file": "data/components/display/velxio-ssd1306-i2c-4pin.json",
+      "category": "display",
+      "confidence": "datasheet"
+    },
+    "wokwi-7segment": {
+      "file": "data/components/display/wokwi-7segment.json",
+      "category": "display",
+      "confidence": "datasheet"
+    },
+    "wokwi-ili9341": {
+      "file": "data/components/display/wokwi-ili9341.json",
+      "category": "display",
+      "confidence": "estimated"
+    },
+    "wokwi-lcd1602": {
+      "file": "data/components/display/wokwi-lcd1602.json",
+      "category": "display",
+      "confidence": "datasheet"
+    },
+    "wokwi-lcd2004": {
+      "file": "data/components/display/wokwi-lcd2004.json",
+      "category": "display",
+      "confidence": "estimated"
+    },
+    "wokwi-led-bar-graph": {
+      "file": "data/components/display/wokwi-led-bar-graph.json",
+      "category": "display",
+      "confidence": "datasheet"
+    },
+    "wokwi-led-ring": {
+      "file": "data/components/display/wokwi-led-ring.json",
+      "category": "display",
+      "confidence": "estimated"
+    },
+    "wokwi-ssd1306": {
+      "file": "data/components/display/wokwi-ssd1306.json",
+      "category": "display",
+      "confidence": "datasheet"
+    },
+    "velxio-a4988": {
+      "file": "data/components/module/velxio-a4988.json",
+      "category": "module",
+      "confidence": "estimated"
+    },
+    "velxio-breadboard-mini": {
+      "file": "data/components/module/velxio-breadboard-mini.json",
+      "category": "module",
+      "confidence": "estimated"
+    },
+    "velxio-breadboard": {
+      "file": "data/components/module/velxio-breadboard.json",
+      "category": "module",
+      "confidence": "estimated"
+    },
+    "wokwi-analog-joystick": {
+      "file": "data/components/module/wokwi-analog-joystick.json",
+      "category": "module",
+      "confidence": "estimated"
+    },
+    "wokwi-dip-switch-8": {
+      "file": "data/components/module/wokwi-dip-switch-8.json",
+      "category": "module",
+      "confidence": "estimated"
+    },
+    "wokwi-ir-remote": {
+      "file": "data/components/module/wokwi-ir-remote.json",
+      "category": "module",
+      "confidence": "estimated"
+    },
+    "wokwi-membrane-keypad": {
+      "file": "data/components/module/wokwi-membrane-keypad.json",
+      "category": "module",
+      "confidence": "estimated"
+    },
+    "wokwi-microsd-card": {
+      "file": "data/components/module/wokwi-microsd-card.json",
+      "category": "module",
+      "confidence": "estimated"
+    },
+    "wokwi-neopixel-matrix": {
+      "file": "data/components/module/wokwi-neopixel-matrix.json",
+      "category": "module",
+      "confidence": "estimated"
+    },
+    "wokwi-neopixel": {
+      "file": "data/components/module/wokwi-neopixel.json",
+      "category": "module",
+      "confidence": "estimated"
+    },
+    "wokwi-potentiometer": {
+      "file": "data/components/module/wokwi-potentiometer.json",
+      "category": "module",
+      "confidence": "estimated"
+    },
+    "wokwi-pushbutton-6mm": {
+      "file": "data/components/module/wokwi-pushbutton-6mm.json",
+      "category": "module",
+      "confidence": "estimated"
+    },
+    "wokwi-pushbutton": {
+      "file": "data/components/module/wokwi-pushbutton.json",
+      "category": "module",
+      "confidence": "estimated"
+    },
+    "wokwi-rotary-dialer": {
+      "file": "data/components/module/wokwi-rotary-dialer.json",
+      "category": "module",
+      "confidence": "estimated"
+    },
+    "wokwi-signal-generator": {
+      "file": "data/components/module/wokwi-signal-generator.json",
+      "category": "module",
+      "confidence": "estimated"
+    },
+    "wokwi-slide-potentiometer": {
+      "file": "data/components/module/wokwi-slide-potentiometer.json",
+      "category": "module",
+      "confidence": "estimated"
+    },
+    "wokwi-slide-switch": {
+      "file": "data/components/module/wokwi-slide-switch.json",
+      "category": "module",
+      "confidence": "estimated"
+    },
+    "wokwi-tilt-switch": {
+      "file": "data/components/module/wokwi-tilt-switch.json",
+      "category": "module",
+      "confidence": "estimated"
+    },
+    "velxio-capacitor-electrolytic": {
+      "file": "data/components/passive/velxio-capacitor-electrolytic.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "velxio-opto-4n25": {
+      "file": "data/components/passive/velxio-opto-4n25.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "velxio-opto-pc817": {
+      "file": "data/components/passive/velxio-opto-pc817.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-bjt-2n2222": {
+      "file": "data/components/passive/wokwi-bjt-2n2222.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-bjt-2n3055": {
+      "file": "data/components/passive/wokwi-bjt-2n3055.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-bjt-2n3906": {
+      "file": "data/components/passive/wokwi-bjt-2n3906.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-bjt-bc547": {
+      "file": "data/components/passive/wokwi-bjt-bc547.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-bjt-bc557": {
+      "file": "data/components/passive/wokwi-bjt-bc557.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-capacitor": {
+      "file": "data/components/passive/wokwi-capacitor.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-diode-1n4007": {
+      "file": "data/components/passive/wokwi-diode-1n4007.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-diode-1n4148": {
+      "file": "data/components/passive/wokwi-diode-1n4148.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-diode-1n5817": {
+      "file": "data/components/passive/wokwi-diode-1n5817.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-diode-1n5819": {
+      "file": "data/components/passive/wokwi-diode-1n5819.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-diode": {
+      "file": "data/components/passive/wokwi-diode.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-ic-74hc00": {
+      "file": "data/components/passive/wokwi-ic-74hc00.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-ic-74hc02": {
+      "file": "data/components/passive/wokwi-ic-74hc02.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-ic-74hc04": {
+      "file": "data/components/passive/wokwi-ic-74hc04.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-ic-74hc08": {
+      "file": "data/components/passive/wokwi-ic-74hc08.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-ic-74hc14": {
+      "file": "data/components/passive/wokwi-ic-74hc14.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-ic-74hc32": {
+      "file": "data/components/passive/wokwi-ic-74hc32.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-ic-74hc86": {
+      "file": "data/components/passive/wokwi-ic-74hc86.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-inductor": {
+      "file": "data/components/passive/wokwi-inductor.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-led": {
+      "file": "data/components/passive/wokwi-led.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-mosfet-2n7000": {
+      "file": "data/components/passive/wokwi-mosfet-2n7000.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-mosfet-fqp27p06": {
+      "file": "data/components/passive/wokwi-mosfet-fqp27p06.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-mosfet-irf540": {
+      "file": "data/components/passive/wokwi-mosfet-irf540.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-mosfet-irf9540": {
+      "file": "data/components/passive/wokwi-mosfet-irf9540.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-opamp-lm324": {
+      "file": "data/components/passive/wokwi-opamp-lm324.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-opamp-lm358": {
+      "file": "data/components/passive/wokwi-opamp-lm358.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-opamp-lm741": {
+      "file": "data/components/passive/wokwi-opamp-lm741.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-opamp-tl072": {
+      "file": "data/components/passive/wokwi-opamp-tl072.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-resistor": {
+      "file": "data/components/passive/wokwi-resistor.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-rgb-led": {
+      "file": "data/components/passive/wokwi-rgb-led.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-zener-1n4733": {
+      "file": "data/components/passive/wokwi-zener-1n4733.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-battery-9v": {
+      "file": "data/components/power/wokwi-battery-9v.json",
+      "category": "power",
+      "confidence": "estimated"
+    },
+    "wokwi-battery-aa": {
+      "file": "data/components/power/wokwi-battery-aa.json",
+      "category": "power",
+      "confidence": "estimated"
+    },
+    "wokwi-battery-coin-cell": {
+      "file": "data/components/power/wokwi-battery-coin-cell.json",
+      "category": "power",
+      "confidence": "estimated"
+    },
+    "wokwi-reg-7805": {
+      "file": "data/components/power/wokwi-reg-7805.json",
+      "category": "power",
+      "confidence": "estimated"
+    },
+    "wokwi-reg-7812": {
+      "file": "data/components/power/wokwi-reg-7812.json",
+      "category": "power",
+      "confidence": "estimated"
+    },
+    "wokwi-reg-7905": {
+      "file": "data/components/power/wokwi-reg-7905.json",
+      "category": "power",
+      "confidence": "estimated"
+    },
+    "wokwi-reg-lm317": {
+      "file": "data/components/power/wokwi-reg-lm317.json",
+      "category": "power",
+      "confidence": "estimated"
+    },
+    "velxio-bmp280": {
+      "file": "data/components/sensor/velxio-bmp280.json",
+      "category": "sensor",
+      "confidence": "estimated"
+    },
+    "velxio-ds3231": {
+      "file": "data/components/sensor/velxio-ds3231.json",
+      "category": "sensor",
+      "confidence": "datasheet"
+    },
+    "velxio-gps-neo6m": {
+      "file": "data/components/sensor/velxio-gps-neo6m.json",
+      "category": "sensor",
+      "confidence": "estimated"
+    },
+    "wokwi-big-sound-sensor": {
+      "file": "data/components/sensor/wokwi-big-sound-sensor.json",
+      "category": "sensor",
+      "confidence": "estimated"
+    },
+    "wokwi-dht22": {
+      "file": "data/components/sensor/wokwi-dht22.json",
+      "category": "sensor",
+      "confidence": "datasheet"
+    },
+    "wokwi-ds1307": {
+      "file": "data/components/sensor/wokwi-ds1307.json",
+      "category": "sensor",
+      "confidence": "estimated"
+    },
+    "wokwi-flame-sensor": {
+      "file": "data/components/sensor/wokwi-flame-sensor.json",
+      "category": "sensor",
+      "confidence": "estimated"
+    },
+    "wokwi-gas-sensor": {
+      "file": "data/components/sensor/wokwi-gas-sensor.json",
+      "category": "sensor",
+      "confidence": "estimated"
+    },
+    "wokwi-hc-sr04": {
+      "file": "data/components/sensor/wokwi-hc-sr04.json",
+      "category": "sensor",
+      "confidence": "datasheet"
+    },
+    "wokwi-heart-beat-sensor": {
+      "file": "data/components/sensor/wokwi-heart-beat-sensor.json",
+      "category": "sensor",
+      "confidence": "estimated"
+    },
+    "wokwi-hx711": {
+      "file": "data/components/sensor/wokwi-hx711.json",
+      "category": "sensor",
+      "confidence": "estimated"
+    },
+    "wokwi-ir-receiver": {
+      "file": "data/components/sensor/wokwi-ir-receiver.json",
+      "category": "sensor",
+      "confidence": "estimated"
+    },
+    "wokwi-ky-040": {
+      "file": "data/components/sensor/wokwi-ky-040.json",
+      "category": "sensor",
+      "confidence": "estimated"
+    },
+    "wokwi-mpu6050": {
+      "file": "data/components/sensor/wokwi-mpu6050.json",
+      "category": "sensor",
+      "confidence": "estimated"
+    },
+    "wokwi-ntc-temperature-sensor": {
+      "file": "data/components/sensor/wokwi-ntc-temperature-sensor.json",
+      "category": "sensor",
+      "confidence": "estimated"
+    },
+    "wokwi-photodiode": {
+      "file": "data/components/sensor/wokwi-photodiode.json",
+      "category": "sensor",
+      "confidence": "estimated"
+    },
+    "wokwi-photoresistor-sensor": {
+      "file": "data/components/sensor/wokwi-photoresistor-sensor.json",
+      "category": "sensor",
+      "confidence": "estimated"
+    },
+    "wokwi-pir-motion-sensor": {
+      "file": "data/components/sensor/wokwi-pir-motion-sensor.json",
+      "category": "sensor",
+      "confidence": "estimated"
+    },
+    "wokwi-small-sound-sensor": {
+      "file": "data/components/sensor/wokwi-small-sound-sensor.json",
+      "category": "sensor",
+      "confidence": "estimated"
+    }
+  }
+}

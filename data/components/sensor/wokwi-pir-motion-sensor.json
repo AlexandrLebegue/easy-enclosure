@@ -1,0 +1,32 @@
+{
+  "partType": "wokwi-pir-motion-sensor",
+  "displayName": "HC-SR501 PIR motion sensor",
+  "category": "sensor",
+  "envelope": {
+    "widthMm": 32,
+    "depthMm": 24,
+    "heightMm": 25
+  },
+  "mountHoles": [
+    {
+      "xMm": 3,
+      "yMm": 12,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 29,
+      "yMm": 12,
+      "diameterMm": 2.5
+    }
+  ],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://www.mpja.com/download/31227sc.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Height includes the fresnel dome. Mounting holes are on the sides of the PCB."
+}

@@ -1,0 +1,42 @@
+{
+  "partType": "wokwi-ds1307",
+  "displayName": "DS1307 RTC module",
+  "category": "sensor",
+  "envelope": {
+    "widthMm": 27,
+    "depthMm": 27,
+    "heightMm": 12
+  },
+  "mountHoles": [
+    {
+      "xMm": 2.5,
+      "yMm": 2.5,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 24.5,
+      "yMm": 2.5,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 2.5,
+      "yMm": 24.5,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 24.5,
+      "yMm": 24.5,
+      "diameterMm": 2.5
+    }
+  ],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://datasheets.maximintegrated.com/en/ds/DS1307.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Common DS1307 breakout with coin cell holder. Module dimensions vary by supplier."
+}

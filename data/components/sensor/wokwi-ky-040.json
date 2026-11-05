@@ -1,0 +1,41 @@
+{
+  "partType": "wokwi-ky-040",
+  "displayName": "KY-040 rotary encoder",
+  "category": "sensor",
+  "envelope": {
+    "widthMm": 32,
+    "depthMm": 20,
+    "heightMm": 20
+  },
+  "mountHoles": [
+    {
+      "xMm": 3,
+      "yMm": 3,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 29,
+      "yMm": 3,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 3,
+      "yMm": 17,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 29,
+      "yMm": 17,
+      "diameterMm": 2.5
+    }
+  ],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Module height includes the rotary shaft and knob at rest."
+}

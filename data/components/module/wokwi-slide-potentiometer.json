@@ -1,0 +1,20 @@
+{
+  "partType": "wokwi-slide-potentiometer",
+  "displayName": "Slide potentiometer 10 kOhm",
+  "category": "module",
+  "envelope": {
+    "widthMm": 75,
+    "depthMm": 15,
+    "heightMm": 10
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Dimensions from manufacturer mechanical drawings/common breakout boards; verify against the physical part before printing."
+}

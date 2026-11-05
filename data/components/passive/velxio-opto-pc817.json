@@ -1,0 +1,21 @@
+{
+  "partType": "velxio-opto-pc817",
+  "displayName": "Optocoupler PC817 (DIP-4)",
+  "category": "passive",
+  "envelope": {
+    "widthMm": 6.5,
+    "depthMm": 5,
+    "heightMm": 3.5
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "library": "kicad:Package_DIP:DIP-4_W7.62mm",
+    "license": "CC-BY-SA-4.0",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Derived from the KiCad library footprint; component tolerance and lead bend not included."
+}

@@ -1,0 +1,21 @@
+{
+  "partType": "velxio-capacitor-electrolytic",
+  "displayName": "Electrolytic capacitor 8 mm",
+  "category": "passive",
+  "envelope": {
+    "widthMm": 8,
+    "depthMm": 8,
+    "heightMm": 12
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "library": "kicad:Capacitor_THT:CP_Radial_D8.0mm_P3.50mm",
+    "license": "CC-BY-SA-4.0",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Derived from the KiCad library footprint; component tolerance and lead bend not included."
+}

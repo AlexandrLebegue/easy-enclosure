@@ -1,0 +1,20 @@
+{
+  "partType": "wokwi-battery-9v",
+  "displayName": "9 V battery",
+  "category": "power",
+  "envelope": {
+    "widthMm": 26.5,
+    "depthMm": 17.5,
+    "heightMm": 48.5
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "IEC 6LR61/PP3 dimensions."
+}

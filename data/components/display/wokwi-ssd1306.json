@@ -1,0 +1,42 @@
+{
+  "partType": "wokwi-ssd1306",
+  "displayName": "SSD1306 OLED 0.96 inch I2C",
+  "category": "display",
+  "envelope": {
+    "widthMm": 27.3,
+    "depthMm": 27.8,
+    "heightMm": 4.5
+  },
+  "mountHoles": [
+    {
+      "xMm": 2.5,
+      "yMm": 2.5,
+      "diameterMm": 2.2
+    },
+    {
+      "xMm": 24.8,
+      "yMm": 2.5,
+      "diameterMm": 2.2
+    },
+    {
+      "xMm": 2.5,
+      "yMm": 25.3,
+      "diameterMm": 2.2
+    },
+    {
+      "xMm": 24.8,
+      "yMm": 25.3,
+      "diameterMm": 2.2
+    }
+  ],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "datasheet",
+  "schemaVersion": 1,
+  "notes": "Common 4-pin I2C OLED breakout; module PCB dimensions vary slightly between suppliers."
+}

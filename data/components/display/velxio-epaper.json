@@ -1,0 +1,42 @@
+{
+  "partType": "velxio-epaper",
+  "displayName": "E-paper module 1.54 inch",
+  "category": "display",
+  "envelope": {
+    "widthMm": 42.5,
+    "depthMm": 33.5,
+    "heightMm": 5
+  },
+  "mountHoles": [
+    {
+      "xMm": 2,
+      "yMm": 2,
+      "diameterMm": 2.2
+    },
+    {
+      "xMm": 40.5,
+      "yMm": 2,
+      "diameterMm": 2.2
+    },
+    {
+      "xMm": 2,
+      "yMm": 31.5,
+      "diameterMm": 2.2
+    },
+    {
+      "xMm": 40.5,
+      "yMm": 31.5,
+      "diameterMm": 2.2
+    }
+  ],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://www.waveshare.com/w/upload/e/e5/1.54inch-e-paper-module-user-manual.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Velxio has a single epaper partType. Dimensions are for the 1.54 inch Waveshare module. The 2.13 inch variant is about 60 x 40 mm, so do not reuse these values blindly."
+}

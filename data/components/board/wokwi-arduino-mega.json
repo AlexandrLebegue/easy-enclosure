@@ -1,0 +1,59 @@
+{
+  "partType": "wokwi-arduino-mega",
+  "displayName": "Arduino Mega 2560 Rev3",
+  "category": "board",
+  "envelope": {
+    "widthMm": 101.6,
+    "depthMm": 53.3,
+    "heightMm": 15
+  },
+  "mountHoles": [
+    {
+      "xMm": 12.7,
+      "yMm": 2.54,
+      "diameterMm": 3.2
+    },
+    {
+      "xMm": 12.7,
+      "yMm": 50.8,
+      "diameterMm": 3.2
+    },
+    {
+      "xMm": 98.4,
+      "yMm": 2.54,
+      "diameterMm": 3.2
+    },
+    {
+      "xMm": 98.4,
+      "yMm": 50.8,
+      "diameterMm": 3.2
+    }
+  ],
+  "cutouts": [
+    {
+      "id": "usb-b",
+      "side": "left",
+      "offsetMm": 4.5,
+      "widthMm": 13,
+      "heightMm": 11,
+      "label": "USB-B"
+    },
+    {
+      "id": "power-jack",
+      "side": "left",
+      "offsetMm": 26,
+      "widthMm": 9,
+      "heightMm": 11,
+      "label": "Barrel jack"
+    }
+  ],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://docs.arduino.cc/resources/datasheets/A000067-datasheet.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "datasheet",
+  "schemaVersion": 1,
+  "notes": "Envelope from Arduino mechanical drawing; mounting hole coordinates estimated."
+}

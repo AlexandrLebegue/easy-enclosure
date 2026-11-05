@@ -40,7 +40,13 @@ Date : 2026-11-05 (mise à jour après merge de la base Agent A).
     `screw-nut` → logements d'écrou.
 - **Pipeline réutilisable** (`src/app/velxio/import/enclosure-pipeline.ts`)
   - `importAndGenerateEnclosure(zip, options)` fait zip → `BoardModel` → `EnclosureSpec` → STL
-    en un appel, prêt à être branché sur l'UI.
+    en un appel.
+- **Intégration UI** (`tools.component` + `velxio-import.service.ts`, ajoutée par l'agent C)
+  - bouton « Import Velxio ZIP » dans la barre d'outils, input `.zip` masqué ;
+  - import → `EnclosureSpec` → mise à jour de l'aperçu 3D via `ChatPreviewBridgeService` ;
+  - messages d'erreur lisibles et compteur d'avertissements ;
+  - `data/**` est copié dans les assets Angular (`angular.json`), donc le repli
+    `data/components.index.json` fonctionne aussi en build statique.
 - **Intégration base Agent A** (merge `5aff747`)
   - 127 entrées dans `data/components.index.json`, 120/120 `partType` Velxio couverts ;
   - API réelle testée : `POST /api/parts/resolve` renvoie les 5 types de l'exemple et
@@ -58,11 +64,8 @@ Date : 2026-11-05 (mise à jour après merge de la base Agent A).
 
 ## Ce qui reste / limites connues
 
-- Le repli local lit `data/components.index.json` à la racine du workspace. En build Angular
-  statique, `data/**` n'est pas dans les assets : sans API `db:serve`, le repli ne trouvera
-  pas l'index. Voir `REQUESTS-agent-b.md` R2.
-- Pas de branchement UI (hors périmètre Agent B) : les services sont utilisables depuis
-  l'application, mais aucun bouton « Importer un zip » n'est ajouté.
+- Repli statique : résolu, `data/**` est désormais copié dans les assets Angular.
+- Branchement UI : fait (bouton « Import Velxio ZIP », voir ci-dessus).
 - `Cutout` ne porte pas d'offset vertical : les découpes sont centrées verticalement sur la
   paroi. Voir `REQUESTS-agent-b.md`.
 - En mode `stacked`, les supports des étages supérieurs sont générés comme des colonnes

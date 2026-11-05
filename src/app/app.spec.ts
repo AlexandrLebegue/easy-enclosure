@@ -95,7 +95,7 @@ describe('App', () => {
     expect(params.holes.length).toBe(1);
   });
 
-  it('syncs sidebar parameter edits back into the chat spec', () => {
+  it('syncs sidebar parameter edits back into the chat spec', async () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     const app = fixture.componentInstance;
@@ -103,6 +103,7 @@ describe('App', () => {
 
     state.updateParam('wall', 4);
     TestBed.flushEffects();
+    await Promise.resolve();
     fixture.detectChanges();
 
     expect(app.spec().rules.wallMm).toBe(4);

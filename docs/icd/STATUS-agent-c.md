@@ -48,13 +48,18 @@ Périmètre livré : `src/app/velxio/chat/**`, le montage dans la coquille (`src
   - panneau affiché à gauche de l'aperçu 3D, avec bouton pour le masquer/réafficher.
   - la spec validée est partagée par `ChatStateService`, persistée et revalidée au chargement.
   - une spec persistée est réappliquée au démarrage (découpes et supports compris).
+  - import de projet Velxio : bouton « Import Velxio ZIP » dans la barre d'outils, service
+    `VelxioImportService` (zip → `EnclosureSpec`, sans STL inutile), application à l'aperçu via
+    `ChatPreviewBridgeService`, erreurs lisibles et avertissements affichés.
+  - `data/**` est servi comme asset Angular pour que le repli `data/components.index.json`
+    fonctionne en build statique.
 - **Point d'entrée public** (`chat/index.ts`) : composant, service, état, bridge, `applyPatches`,
   `validateEnclosureSpec`, `createDefaultSpec` et types associés.
 
 ## Vérifications
 
 - `npm run build` : vert.
-- `npm test` : **267/267 SUCCESS** (dont 45 tests chat).
+- `npm test` : **270/270 SUCCESS** (dont 45 tests chat).
 - `npm run db:test` : **11/11 SUCCESS**.
 - Test réseau réel avec la clé de l'environnement : `GET /v1/models` → 200, puis
   `POST /v1/chat/completions` → 200 avec une réponse JSON valide contenant les patches attendus

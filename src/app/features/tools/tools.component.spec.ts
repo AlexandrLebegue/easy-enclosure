@@ -3,15 +3,25 @@ import JSZip from 'jszip';
 
 import { cloneParams } from '../../core/params';
 import { EnclosureStateService } from '../../core/state/enclosure-state.service';
+import { createDefaultSpec } from '../../velxio/chat/spec-defaults';
+import { VelxioImportService } from '../../velxio/import/velxio-import.service';
 import { ToolsComponent } from './tools.component';
 
 describe('ToolsComponent', () => {
   let component: ToolsComponent;
   let state: EnclosureStateService;
+  let importZipSpy: jasmine.Spy;
+
+  const importMock = {
+    importZip: (...args: unknown[]) => importZipSpy(...args),
+  };
 
   beforeEach(async () => {
+    localStorage.clear();
+    importZipSpy = jasmine.createSpy('importZip');
     await TestBed.configureTestingModule({
       imports: [ToolsComponent],
+      providers: [{ provide: VelxioImportService, useValue: importMock }],
     }).compileComponents();
 
     const fixture = TestBed.createComponent(ToolsComponent);
@@ -589,5 +599,44 @@ describe('ToolsComponent', () => {
       jasmine.any(Blob),
       jasmine.stringMatching(/^enclosure-cable-clamp-straps-\d+\.stl$/),
     );
+  });
+
+  it('imports a Velxio zip and applies the generated spec to the preview', async () => {
+    const spec = createDefaultSpec();
+    spec.outer = { widthMm: 120, depthMm: 80, heightMm: 40 };
+    spec.cutouts = [{ id: 'usb', side: 'front', offsetMm: 10, widthMm: 12, heightMm: 6 }];
+    importZipSpy.and.resolveTo({ spec, warnings: [], partCount: 2 });
+
+    const file = new File(['zip'], 'project.zip', { type: 'application/zip' });
+    const input = document.createElement('input');
+    Object.defineProperty(input, 'files', {
+      value: { 0: file, length: 1, item: (index: number) => (index === 0 ? file : null) },
+    });
+
+    await component.importVelxioFile({ target: input } as unknown as Event);
+
+    expect(importZipSpy).toHaveBeenCalled();
+    expect((importZipSpy.calls.mostRecent().args[0] as File).name).toBe('project.zip');
+    expect(state.params().width).toBe(120);
+    expect(state.params().holes.length).toBe(1);
+    expect(component.importStatus()).toContain('2 composant(s)');
+    expect(component.isImporting()).toBeFalse();
+    expect(component.importError()).toBeNull();
+  });
+
+  it('shows a readable error when the Velxio zip is invalid', async () => {
+    importZipSpy.and.rejectWith(new Error('MISSING_DIAGRAM_JSON'));
+
+    const file = new File(['zip'], 'bad.zip', { type: 'application/zip' });
+    const input = document.createElement('input');
+    Object.defineProperty(input, 'files', {
+      value: { 0: file, length: 1, item: (index: number) => (index === 0 ? file : null) },
+    });
+
+    await component.importVelxioFile({ target: input } as unknown as Event);
+
+    expect(component.importError()).toContain('diagram.json');
+    expect(component.importStatus()).toBeNull();
+    expect(component.isImporting()).toBeFalse();
   });
 });

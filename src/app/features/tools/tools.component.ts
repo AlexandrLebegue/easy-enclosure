@@ -29,6 +29,8 @@ import type { Params } from '../../core/params';
 import { EnclosureStateService } from '../../core/state/enclosure-state.service';
 import { toMetricParams } from '../../core/units';
 import { ActionButtonComponent } from '../../shared/action-button/action-button.component';
+import { ChatPreviewBridgeService } from '../../velxio/chat/chat-preview-bridge.service';
+import { VelxioImportService } from '../../velxio/import/velxio-import.service';
 
 export type { ExportFormatId as ExportFormat };
 
@@ -45,12 +47,20 @@ export class ToolsComponent {
   @ViewChild('exportDialog')
   exportDialog?: ElementRef<HTMLDialogElement>;
 
+  @ViewChild('velxioInput')
+  velxioInput?: ElementRef<HTMLInputElement>;
+
   private readonly state = inject(EnclosureStateService);
   private readonly exportFormatService = inject(ExportFormatService);
+  private readonly velxioImport = inject(VelxioImportService);
+  private readonly preview = inject(ChatPreviewBridgeService);
 
   readonly supportedFormats = this.exportFormatService.formats;
   readonly isExportModalOpen = signal(false);
   readonly isExporting = signal(false);
+  readonly isImporting = signal(false);
+  readonly importError = signal<string | null>(null);
+  readonly importStatus = signal<string | null>(null);
   readonly exportFormat = signal<ExportFormatId>('stl');
 
   readonly selectedFormat = computed<ExportFormatDefinition>(() => {
@@ -124,6 +134,55 @@ export class ToolsComponent {
 
   openFilePicker(): void {
     this.fileInput?.nativeElement.click();
+  }
+
+  openVelxioPicker(): void {
+    this.velxioInput?.nativeElement.click();
+  }
+
+  async importVelxioFile(event: Event): Promise<void> {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    input.value = '';
+    if (!file || this.isImporting()) {
+      return;
+    }
+
+    this.isImporting.set(true);
+    this.importError.set(null);
+    this.importStatus.set(null);
+
+    try {
+      const current = this.preview.spec();
+      const project = await this.velxioImport.importZip(file, {
+        import: { fileName: file.name },
+        build: {
+          mode: current.mode,
+          rules: current.rules,
+          lid: current.lid,
+        },
+      });
+
+      if (
+        !this.preview.applySpec(project.spec, {
+          replaceHoles: true,
+          replaceMounts: true,
+        })
+      ) {
+        throw new Error('INVALID_ENCLOSURE_SPEC');
+      }
+
+      const warningText =
+        project.warnings.length > 0 ? `, ${project.warnings.length} avertissement(s)` : '';
+      this.importStatus.set(
+        `Projet Velxio importé : ${project.partCount} composant(s), ` +
+          `${project.spec.cutouts.length} découpe(s)${warningText}.`,
+      );
+    } catch (error) {
+      this.importError.set(this.importErrorMessage(error));
+    } finally {
+      this.isImporting.set(false);
+    }
   }
 
   openExportModal(): void {
@@ -376,6 +435,26 @@ export class ToolsComponent {
 
   private saveFile(data: Blob, fileName: string): void {
     saveAs(data, fileName);
+  }
+
+  private importErrorMessage(error: unknown): string {
+    const message = error instanceof Error ? error.message : String(error);
+    if (message.includes('MISSING_DIAGRAM_JSON')) {
+      return 'Le zip ne contient pas de fichier diagram.json.';
+    }
+    if (message.includes('INVALID_DIAGRAM_JSON')) {
+      return 'diagram.json n’est pas un JSON valide.';
+    }
+    if (message.includes('INVALID_DIAGRAM_STRUCTURE')) {
+      return 'diagram.json ne contient pas de liste de composants valide.';
+    }
+    if (message.includes('INVALID_DIAGRAM_PART')) {
+      return 'Une entrée de diagram.json est invalide.';
+    }
+    if (message.includes('INVALID_ENCLOSURE_SPEC')) {
+      return 'La spécification générée depuis le projet est invalide.';
+    }
+    return `Import Velxio impossible : ${message}`;
   }
 
   private formattedTimestamp(): string {

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
+import type { EnclosureSpec } from './velxio/model/enclosure.types';
 
 @Component({ selector: 'app-renderer', template: '' })
 class MockRendererComponent {}
@@ -8,14 +9,21 @@ class MockRendererComponent {}
 @Component({ selector: 'app-sidebar', template: '' })
 class MockSidebarComponent {}
 
+@Component({ selector: 'app-chat-panel', template: '' })
+class MockChatPanelComponent {
+  readonly specInput = input<EnclosureSpec | null>(null);
+  readonly specChange = output<EnclosureSpec>();
+}
+
 describe('App', () => {
   beforeEach(async () => {
+    localStorage.clear();
     await TestBed.configureTestingModule({
       imports: [App],
     })
       .overrideComponent(App, {
         set: {
-          imports: [MockRendererComponent, MockSidebarComponent],
+          imports: [MockRendererComponent, MockSidebarComponent, MockChatPanelComponent],
         },
       })
       .compileComponents();
@@ -34,5 +42,22 @@ describe('App', () => {
     const host = fixture.nativeElement as HTMLElement;
     expect(host.querySelector('app-renderer')).not.toBeNull();
     expect(host.querySelector('app-sidebar')).not.toBeNull();
+    expect(host.querySelector('app-chat-panel')).not.toBeNull();
+  });
+
+  it('toggles the chat panel and stores a valid spec change', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    const app = fixture.componentInstance;
+
+    expect(app.chatOpen()).toBeTrue();
+    app.toggleChat();
+    fixture.detectChanges();
+    expect(app.chatOpen()).toBeFalse();
+    expect((fixture.nativeElement as HTMLElement).querySelector('app-chat-panel')).toBeNull();
+
+    const next = { ...app.spec(), mode: 'stacked' as const };
+    app.onSpecChange(next);
+    expect(app.spec().mode).toBe('stacked');
   });
 });

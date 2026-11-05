@@ -1,6 +1,22 @@
 <div class="flex h-screen overflow-hidden">
+  @if (chatOpen()) {
+    <aside
+      class="relative z-10 w-96 max-w-[45vw] shrink-0 overflow-hidden border-r border-slate-200 bg-slate-50"
+    >
+      <app-chat-panel [specInput]="spec()" (specChange)="onSpecChange($event)" />
+    </aside>
+  }
+
   <div class="relative min-w-0 flex-1">
     <app-renderer />
+    <button
+      type="button"
+      class="absolute left-3 top-3 z-20 rounded border border-slate-300 bg-white/90 px-2.5 py-1.5 text-[11px] font-semibold text-slate-700 shadow-sm backdrop-blur hover:bg-white"
+      [attr.aria-expanded]="chatOpen()"
+      (click)="toggleChat()"
+    >
+      {{ chatOpen() ? 'Masquer l’assistant' : 'Assistant boîtier' }}
+    </button>
   </div>
 
   <aside

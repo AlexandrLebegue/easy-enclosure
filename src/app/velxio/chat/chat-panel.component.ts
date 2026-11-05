@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 
 import type { ChatPatch, ChatTurn, EnclosureSpec } from '../model/enclosure.types';
+import { clearChatHistory, loadChatHistory, saveChatHistory } from './chat-history';
 import { applyPatches, type AppliedPatch, type RejectedPatch } from './patches';
 import { ChatService } from './service';
 import { cloneSpec, createDefaultSpec } from './spec-defaults';
@@ -66,6 +67,13 @@ export class ChatPanelComponent {
   private nextId = 1;
 
   constructor() {
+    const stored = loadChatHistory();
+    if (stored) {
+      this.messages.set(stored.entries);
+      this.turns.set(stored.turns);
+      this.nextId = stored.entries.reduce((maxId, entry) => Math.max(maxId, entry.id), 0) + 1;
+    }
+
     const config = this.chat.getConfig();
     this.config.set(config);
     this.baseUrlDraft = config.baseUrl;
@@ -203,6 +211,7 @@ export class ChatPanelComponent {
           message: response.message,
         },
       ]);
+      this.persistHistory();
       this.specChange.emit(result.spec);
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
@@ -211,6 +220,16 @@ export class ChatPanelComponent {
     } finally {
       this.busy.set(false);
     }
+  }
+
+  clearHistory(): void {
+    this.messages.set([]);
+    this.turns.set([]);
+    this.nextId = 1;
+    this.pendingQuestion.set(null);
+    this.explanation.set(null);
+    this.error.set(null);
+    clearChatHistory();
   }
 
   explainLast(): void {
@@ -244,5 +263,10 @@ export class ChatPanelComponent {
 
   private append(entry: Omit<ChatEntry, 'id'>): void {
     this.messages.update((entries) => [...entries, { ...entry, id: this.nextId++ }]);
+    this.persistHistory();
+  }
+
+  private persistHistory(): void {
+    saveChatHistory(this.messages(), this.turns());
   }
 }

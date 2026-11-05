@@ -1,0 +1,20 @@
+{
+  "partType": "velxio-junction",
+  "displayName": "Wire junction (virtual)",
+  "category": "other",
+  "envelope": {
+    "widthMm": 2,
+    "depthMm": 2,
+    "heightMm": 1
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "CC0-1.0",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Virtual wire junction with no physical part. The 2 x 2 x 1 mm bounding box is a placeholder so layout code has a non-zero footprint; it should normally be ignored by the enclosure generator."
+}

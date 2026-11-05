@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-05T19:02:25.589Z",
-  "count": 107,
+  "generatedAt": "2026-11-05T19:05:58.231Z",
+  "count": 127,
   "byPartType": {
     "velxio-motor-driver-l293d": {
       "file": "data/components/actuator/velxio-motor-driver-l293d.json",
@@ -237,8 +237,103 @@
       "category": "module",
       "confidence": "estimated"
     },
+    "velxio-junction": {
+      "file": "data/components/other/velxio-junction.json",
+      "category": "other",
+      "confidence": "estimated"
+    },
     "velxio-capacitor-electrolytic": {
       "file": "data/components/passive/velxio-capacitor-electrolytic.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "velxio-flip-flop-d": {
+      "file": "data/components/passive/velxio-flip-flop-d.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "velxio-flip-flop-jk": {
+      "file": "data/components/passive/velxio-flip-flop-jk.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "velxio-flip-flop-t": {
+      "file": "data/components/passive/velxio-flip-flop-t.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "velxio-logic-and-3": {
+      "file": "data/components/passive/velxio-logic-and-3.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "velxio-logic-and-4": {
+      "file": "data/components/passive/velxio-logic-and-4.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "velxio-logic-and": {
+      "file": "data/components/passive/velxio-logic-and.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "velxio-logic-nand-3": {
+      "file": "data/components/passive/velxio-logic-nand-3.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "velxio-logic-nand-4": {
+      "file": "data/components/passive/velxio-logic-nand-4.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "velxio-logic-nand": {
+      "file": "data/components/passive/velxio-logic-nand.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "velxio-logic-nor-3": {
+      "file": "data/components/passive/velxio-logic-nor-3.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "velxio-logic-nor-4": {
+      "file": "data/components/passive/velxio-logic-nor-4.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "velxio-logic-nor": {
+      "file": "data/components/passive/velxio-logic-nor.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "velxio-logic-not": {
+      "file": "data/components/passive/velxio-logic-not.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "velxio-logic-or-3": {
+      "file": "data/components/passive/velxio-logic-or-3.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "velxio-logic-or-4": {
+      "file": "data/components/passive/velxio-logic-or-4.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "velxio-logic-or": {
+      "file": "data/components/passive/velxio-logic-or.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "velxio-logic-xnor": {
+      "file": "data/components/passive/velxio-logic-xnor.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "velxio-logic-xor": {
+      "file": "data/components/passive/velxio-logic-xor.json",
       "category": "passive",
       "confidence": "estimated"
     },
@@ -369,6 +464,11 @@
     },
     "wokwi-mosfet-irf9540": {
       "file": "data/components/passive/wokwi-mosfet-irf9540.json",
+      "category": "passive",
+      "confidence": "estimated"
+    },
+    "wokwi-opamp-ideal": {
+      "file": "data/components/passive/wokwi-opamp-ideal.json",
       "category": "passive",
       "confidence": "estimated"
     },

@@ -1,0 +1,21 @@
+{
+  "partType": "velxio-flip-flop-jk",
+  "displayName": "JK flip-flop (virtual)",
+  "category": "passive",
+  "envelope": {
+    "widthMm": 19,
+    "depthMm": 6.5,
+    "heightMm": 3.5
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "library": "kicad:Package_DIP:DIP-14_W7.62mm",
+    "license": "CC-BY-SA-4.0",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Virtual Velxio simulation symbol with no physical footprint. Plausible physical equivalent: 74HC73 dual JK flip-flop, using the KiCad DIP package dimensions. Values are estimated for enclosure layout only; verify the real IC package before printing."
+}

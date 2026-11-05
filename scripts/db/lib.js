@@ -368,6 +368,8 @@ function build() {
   if (report.ok) {
     index = buildIndex(entries);
     writeJson(INDEX_FILE, index);
+  } else if (fs.existsSync(INDEX_FILE)) {
+    fs.unlinkSync(INDEX_FILE);
   }
   writeJson(REPORT_FILE, report);
   return { report, index };

@@ -1,0 +1,21 @@
+{
+  "partType": "velxio-epaper-2-13",
+  "displayName": "E-paper module 2.13 inch",
+  "category": "display",
+  "envelope": {
+    "widthMm": 59.2,
+    "depthMm": 29.2,
+    "heightMm": 1.05
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://files.waveshare.com/upload/d/d5/2.13inch_e-Paper_Specification.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "datasheet",
+  "schemaVersion": 1,
+  "notes": "Waveshare 2.13 inch raw e-paper panel outline 59.2 x 29.2 x 1.05 mm. Velxio exposes only the generic velxio-epaper partType; this entry is a documented 2.13 inch variant."
+}

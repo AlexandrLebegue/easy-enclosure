@@ -10,6 +10,12 @@ const DEFAULT_PORT = 4100;
 export function createApp() {
   const app = express();
   app.use(express.json());
+  app.use((_req: Request, res: Response, next: () => void) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+  });
 
   app.get('/api/parts', (_req: Request, res: Response) => {
     const parts: ComponentSpec[] = Array.from(loadParts().values());

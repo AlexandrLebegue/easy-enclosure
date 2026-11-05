@@ -1,0 +1,30 @@
+{
+  "partType": "board-velxio-stm32",
+  "displayName": "STM32F103C8T6 Blue Pill",
+  "category": "board",
+  "envelope": {
+    "widthMm": 53,
+    "depthMm": 22.5,
+    "heightMm": 12
+  },
+  "mountHoles": [],
+  "cutouts": [
+    {
+      "id": "micro-usb",
+      "side": "left",
+      "offsetMm": 6.75,
+      "widthMm": 9,
+      "heightMm": 4,
+      "label": "Micro-USB"
+    }
+  ],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://stm32-base.org/boards/STM32F103C8T6-Blue-Pill.html",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Common Blue Pill PCB is about 53 x 22.5 mm. No mounting holes on the standard board. Height includes the pre-soldered headers; clones vary."
+}

@@ -1,0 +1,21 @@
+{
+  "partType": "wokwi-servo-mg996r",
+  "displayName": "MG996R high-torque servo",
+  "category": "actuator",
+  "envelope": {
+    "widthMm": 40.7,
+    "depthMm": 19.7,
+    "heightMm": 42.9
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://media.digikey.com/pdf/Data%20Sheets/Terasic%20Technologies/MG996R.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "datasheet",
+  "schemaVersion": 1,
+  "notes": "Body dimensions 40.7 x 19.7 x 42.9 mm from the manufacturer datasheet. Mounting flanges and servo horn extend beyond the body, so add clearance."
+}

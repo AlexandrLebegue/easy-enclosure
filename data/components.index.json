@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-05T18:29:48.460Z",
-  "count": 100,
+  "generatedAt": "2026-11-05T19:02:25.589Z",
+  "count": 107,
   "byPartType": {
     "velxio-motor-driver-l293d": {
       "file": "data/components/actuator/velxio-motor-driver-l293d.json",
@@ -27,6 +27,11 @@
       "category": "actuator",
       "confidence": "estimated"
     },
+    "wokwi-servo-mg996r": {
+      "file": "data/components/actuator/wokwi-servo-mg996r.json",
+      "category": "actuator",
+      "confidence": "datasheet"
+    },
     "wokwi-servo": {
       "file": "data/components/actuator/wokwi-servo.json",
       "category": "actuator",
@@ -35,6 +40,31 @@
     "wokwi-stepper-motor": {
       "file": "data/components/actuator/wokwi-stepper-motor.json",
       "category": "actuator",
+      "confidence": "estimated"
+    },
+    "board-velxio-arduino-uno": {
+      "file": "data/components/board/board-velxio-arduino-uno.json",
+      "category": "board",
+      "confidence": "datasheet"
+    },
+    "board-velxio-esp32-c3": {
+      "file": "data/components/board/board-velxio-esp32-c3.json",
+      "category": "board",
+      "confidence": "datasheet"
+    },
+    "board-velxio-esp32": {
+      "file": "data/components/board/board-velxio-esp32.json",
+      "category": "board",
+      "confidence": "estimated"
+    },
+    "board-velxio-rpi-pico": {
+      "file": "data/components/board/board-velxio-rpi-pico.json",
+      "category": "board",
+      "confidence": "datasheet"
+    },
+    "board-velxio-stm32": {
+      "file": "data/components/board/board-velxio-stm32.json",
+      "category": "board",
       "confidence": "estimated"
     },
     "wokwi-arduino-mega": {
@@ -65,6 +95,11 @@
     "wokwi-nano-rp2040-connect": {
       "file": "data/components/board/wokwi-nano-rp2040-connect.json",
       "category": "board",
+      "confidence": "datasheet"
+    },
+    "velxio-epaper-2-13": {
+      "file": "data/components/display/velxio-epaper-2-13.json",
+      "category": "display",
       "confidence": "datasheet"
     },
     "velxio-epaper": {

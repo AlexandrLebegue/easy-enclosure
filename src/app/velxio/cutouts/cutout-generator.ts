@@ -75,11 +75,21 @@ const wallLength = (side: Side, outer: LayoutOuterDimensions): number => {
 const alongCoordinate = (side: Side, point: LocalPoint): number =>
   side === 'left' || side === 'right' ? point.y : point.x;
 
+interface OpeningSource {
+  id: string;
+  side: Side;
+  offsetMm: number;
+  widthMm: number;
+  heightMm: number;
+  depthMm?: number;
+  label?: string;
+}
+
 /**
- * Project component cutouts onto the enclosure walls.
+ * Project component cutouts and keepouts onto the enclosure walls.
  *
- * Component keepouts are intentionally not converted into cuts: they reserve a
- * volume but do not remove material from the shell.
+ * Keepouts are wall-side no-material zones: they become openings just like
+ * cutouts, labelled with their reason so the generated spec stays traceable.
  */
 export const generateCutouts = (
   parts: readonly PlacedPart[],
@@ -100,7 +110,27 @@ export const generateCutouts = (
     const centerX = placed.x + envelope.widthMm / 2;
     const centerY = placed.y + envelope.depthMm / 2;
 
-    for (const source of part.spec.cutouts) {
+    const openings: OpeningSource[] = [
+      ...part.spec.cutouts.map((cutout) => ({
+        id: cutout.id,
+        side: cutout.side,
+        offsetMm: cutout.offsetMm,
+        widthMm: cutout.widthMm,
+        heightMm: cutout.heightMm,
+        depthMm: cutout.depthMm,
+        label: cutout.label ?? `${part.partType} ${cutout.id}`,
+      })),
+      ...part.spec.keepouts.map((keepout, index) => ({
+        id: `keepout-${index + 1}`,
+        side: keepout.side,
+        offsetMm: keepout.offsetMm,
+        widthMm: keepout.widthMm,
+        heightMm: keepout.heightMm,
+        label: keepout.reason,
+      })),
+    ];
+
+    for (const source of openings) {
       if (source.widthMm <= 0 || source.heightMm <= 0) {
         continue;
       }
@@ -147,7 +177,7 @@ export const generateCutouts = (
         widthMm: expandedWidth,
         heightMm: expandedHeight,
         depthMm: source.depthMm,
-        label: source.label ?? `${part.partType} ${source.id}`,
+        label: source.label,
         clearanceMm: printClearance,
       });
     }

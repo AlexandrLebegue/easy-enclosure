@@ -3,7 +3,8 @@
 Branche : `agent-c/chat` (basée sur `velxio`)
 Périmètre livré : `src/app/velxio/chat/**`, `docs/icd/STATUS-agent-c.md`, `docs/icd/REQUESTS-agent-c.md`,
 plus le montage dans la coquille (`src/app/app.ts`, `src/app/app.html`, `src/app/app.spec.ts`)
-à la demande explicite du 2026-11-05.
+à la demande explicite du 2026-11-05. La branche contient aussi les merges de
+`agent-a/components` et `agent-b/enclosure`.
 
 ## Ce qui marche
 
@@ -49,16 +50,19 @@ plus le montage dans la coquille (`src/app/app.ts`, `src/app/app.html`, `src/app
 ## Vérifications
 
 - `npm run build` : vert.
-- `npm test` : 232/232 SUCCESS (dont les 36 tests du chat).
+- `npm test` : 255/255 SUCCESS (dont les 36 tests du chat et les tests import/layout/
+  cutouts/supports de l'agent B).
+- `npm run db:test` : 11/11 SUCCESS (base de composants de l'agent A).
 - Si Chrome n'est pas installé, lancer avec un binaire Chromium disponible :
   `CHROME_BIN=/chemin/vers/chrome npm test`.
 
 ## Ce qui reste / à intégrer
 
-- **Pont vers le moteur CAO** : `ChatStateService` expose l'`EnclosureSpec` validée, mais le
-  mapping `EnclosureSpec -> Params` et l'appel au moteur de génération appartiennent à l'agent B
-  (zone `layout` / `cutouts` / `supports`). Tant que ce pont n'existe pas, le chat met à jour la
-  spec et son résumé dans l'UI, pas le rendu 3D.
+- **Pont vers le moteur CAO** : `ChatStateService` expose l'`EnclosureSpec` validée. L'agent B
+  fournit désormais `generateEnclosureStlBlob(spec)` (`velxio/import/enclosure-mesh.ts`) et le
+  pipeline d'import. Il reste à brancher l'état du chat sur ce générateur dans le renderer ;
+  c'est une intégration UI/agent B, hors zone chat. En l'état, le chat met à jour la spec et son
+  résumé dans l'UI, pas le rendu 3D.
 - **Streaming** : non implémenté, la requête reste non-streamée pour garder une validation
   atomique des patches.
 - **Test réseau réel** : le serveur `http://192.168.1.59:18020/v1` répond `401 Unauthorized`

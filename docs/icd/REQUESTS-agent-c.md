@@ -15,17 +15,19 @@ gauche de `app-renderer`, avec un bouton pour le masquer, et relié à `ChatStat
 **Fichiers concernés** : zone agent B (`src/app/velxio/layout/**`, `cutouts/**`, `supports/**`)
 et éventuellement `src/app/velxio/model/**` (ProxBoss).
 
-**Besoin** : consommer l'`EnclosureSpec` exposée par `ChatStateService` et la mapper vers les
-`Params` / appels de génération du moteur, puis renvoyer la géométrie au renderer. Le chat
-n'accède volontairement jamais au moteur : il ne produit que des `ChatPatch` validés.
+**Besoin** : consommer l'`EnclosureSpec` exposée par `ChatStateService` et appeler le générateur
+de l'agent B, puis renvoyer la géométrie au renderer. Le chat n'accède volontairement jamais au
+moteur : il ne produit que des `ChatPatch` validés.
 
-**Suggestion** :
+**Suggestion** (l'agent B fournit déjà `generateEnclosureStlBlob`) :
 
 ```ts
+import { generateEnclosureStlBlob } from '../velxio/import/enclosure-mesh';
+
 const spec = inject(ChatStateService).spec;
 effect(() => {
-  const enclosure = spec();
-  // mapping EnclosureSpec -> Params, puis régénération du rendu
+  const stl = generateEnclosureStlBlob(spec());
+  // charger le STL dans le renderer
 });
 ```
 

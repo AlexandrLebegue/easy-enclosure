@@ -1,0 +1,21 @@
+{
+  "partType": "wokwi-pushbutton",
+  "displayName": "Tactile pushbutton 12 mm",
+  "category": "module",
+  "envelope": {
+    "widthMm": 12,
+    "depthMm": 12,
+    "heightMm": 7
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://www.e-switch.com/wp-content/uploads/2021/05/TL3305-Series.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Common 12 x 12 mm through-hole tactile switch; pin pitch 5 mm."
+}

@@ -1,0 +1,30 @@
+{
+  "partType": "wokwi-nano-rp2040-connect",
+  "displayName": "Arduino Nano RP2040 Connect",
+  "category": "board",
+  "envelope": {
+    "widthMm": 45,
+    "depthMm": 18,
+    "heightMm": 7
+  },
+  "mountHoles": [],
+  "cutouts": [
+    {
+      "id": "usb-c",
+      "side": "front",
+      "offsetMm": 3,
+      "widthMm": 9,
+      "heightMm": 4,
+      "label": "USB-C"
+    }
+  ],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://docs.arduino.cc/resources/datasheets/ABX00053-datasheet.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "datasheet",
+  "schemaVersion": 1,
+  "notes": "Same 45 x 18 mm Nano footprint; no mounting holes."
+}

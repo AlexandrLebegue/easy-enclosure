@@ -1,0 +1,42 @@
+{
+  "partType": "wokwi-stepper-motor",
+  "displayName": "NEMA 17 stepper motor",
+  "category": "actuator",
+  "envelope": {
+    "widthMm": 42.3,
+    "depthMm": 42.3,
+    "heightMm": 40
+  },
+  "mountHoles": [
+    {
+      "xMm": 5.5,
+      "yMm": 5.5,
+      "diameterMm": 3.2
+    },
+    {
+      "xMm": 36.8,
+      "yMm": 5.5,
+      "diameterMm": 3.2
+    },
+    {
+      "xMm": 5.5,
+      "yMm": 36.8,
+      "diameterMm": 3.2
+    },
+    {
+      "xMm": 36.8,
+      "yMm": 36.8,
+      "diameterMm": 3.2
+    }
+  ],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://www.omc-stepperonline.com/download/17HS4401.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Assumed NEMA 17 body. Velxio does not specify the exact stepper model; 28BYJ-48 variants are much smaller (28 mm). Check the actual part."
+}

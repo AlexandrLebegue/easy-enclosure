@@ -1,0 +1,38 @@
+{
+  "partType": "wokwi-esp32-devkit-v1",
+  "displayName": "ESP32 DevKit V1 (30-pin)",
+  "category": "board",
+  "envelope": {
+    "widthMm": 55,
+    "depthMm": 28,
+    "heightMm": 13
+  },
+  "mountHoles": [],
+  "cutouts": [
+    {
+      "id": "micro-usb",
+      "side": "front",
+      "offsetMm": 3,
+      "widthMm": 9,
+      "heightMm": 4,
+      "label": "Micro-USB"
+    }
+  ],
+  "keepouts": [
+    {
+      "side": "top",
+      "offsetMm": 0,
+      "widthMm": 28,
+      "heightMm": 15,
+      "reason": "PCB antenna keepout"
+    }
+  ],
+  "provenance": {
+    "url": "https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_en.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Envelope of the common 30-pin DevKit V1 breakout; the ESP32-WROOM-32 module itself is 18 x 25.5 mm. Antenna keepout zone at the top."
+}

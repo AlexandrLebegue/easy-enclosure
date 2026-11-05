@@ -1,0 +1,59 @@
+{
+  "partType": "board-velxio-arduino-uno",
+  "displayName": "Velxio Arduino Uno board (alias)",
+  "category": "board",
+  "envelope": {
+    "widthMm": 68.6,
+    "depthMm": 53.4,
+    "heightMm": 15
+  },
+  "mountHoles": [
+    {
+      "xMm": 13.97,
+      "yMm": 2.54,
+      "diameterMm": 3.2
+    },
+    {
+      "xMm": 15.24,
+      "yMm": 50.8,
+      "diameterMm": 3.2
+    },
+    {
+      "xMm": 66.04,
+      "yMm": 45.72,
+      "diameterMm": 3.2
+    },
+    {
+      "xMm": 66.04,
+      "yMm": 7.62,
+      "diameterMm": 3.2
+    }
+  ],
+  "cutouts": [
+    {
+      "id": "usb-b",
+      "side": "left",
+      "offsetMm": 4.5,
+      "widthMm": 13,
+      "heightMm": 11,
+      "label": "USB-B"
+    },
+    {
+      "id": "power-jack",
+      "side": "left",
+      "offsetMm": 26,
+      "widthMm": 9,
+      "heightMm": 11,
+      "label": "Barrel jack"
+    }
+  ],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://docs.arduino.cc/resources/datasheets/A000066-datasheet.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "datasheet",
+  "schemaVersion": 1,
+  "notes": "Alias of wokwi-arduino-uno used by Velxio diagram exports. Same mechanical dimensions and mounting holes."
+}

@@ -1,0 +1,20 @@
+{
+  "partType": "wokwi-ir-remote",
+  "displayName": "IR remote control",
+  "category": "module",
+  "envelope": {
+    "widthMm": 86,
+    "depthMm": 40,
+    "heightMm": 6
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Typical 21-key IR remote; bounding box."
+}

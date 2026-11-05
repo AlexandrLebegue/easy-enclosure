@@ -1,0 +1,20 @@
+{
+  "partType": "wokwi-signal-generator",
+  "displayName": "Signal generator module",
+  "category": "module",
+  "envelope": {
+    "widthMm": 50,
+    "depthMm": 30,
+    "heightMm": 20
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Generic signal generator breakout; dimensions estimated from common modules."
+}

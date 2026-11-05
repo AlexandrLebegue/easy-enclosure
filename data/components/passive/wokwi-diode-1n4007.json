@@ -1,0 +1,21 @@
+{
+  "partType": "wokwi-diode-1n4007",
+  "displayName": "Diode 1N4007",
+  "category": "passive",
+  "envelope": {
+    "widthMm": 7.6,
+    "depthMm": 2.7,
+    "heightMm": 2.7
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "library": "kicad:Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal",
+    "license": "CC-BY-SA-4.0",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Derived from the KiCad library footprint; component tolerance and lead bend not included."
+}

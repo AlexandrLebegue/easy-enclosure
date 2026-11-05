@@ -1,0 +1,42 @@
+{
+  "partType": "velxio-ds3231",
+  "displayName": "DS3231 RTC module",
+  "category": "sensor",
+  "envelope": {
+    "widthMm": 38,
+    "depthMm": 22,
+    "heightMm": 14
+  },
+  "mountHoles": [
+    {
+      "xMm": 3,
+      "yMm": 3,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 35,
+      "yMm": 3,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 3,
+      "yMm": 19,
+      "diameterMm": 2.5
+    },
+    {
+      "xMm": 35,
+      "yMm": 19,
+      "diameterMm": 2.5
+    }
+  ],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://datasheets.maximintegrated.com/en/ds/DS3231.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "datasheet",
+  "schemaVersion": 1,
+  "notes": "Height includes the CR2032 coin cell holder and header pins."
+}

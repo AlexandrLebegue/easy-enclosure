@@ -1,0 +1,20 @@
+{
+  "partType": "wokwi-reg-lm317",
+  "displayName": "Linear regulator LM317 (TO-220)",
+  "category": "power",
+  "envelope": {
+    "widthMm": 10.4,
+    "depthMm": 4.6,
+    "heightMm": 15.5
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "TO-220 package; height includes the tab."
+}

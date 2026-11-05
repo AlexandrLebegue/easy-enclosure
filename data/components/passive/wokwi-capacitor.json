@@ -1,0 +1,21 @@
+{
+  "partType": "wokwi-capacitor",
+  "displayName": "Ceramic capacitor",
+  "category": "passive",
+  "envelope": {
+    "widthMm": 5,
+    "depthMm": 2.5,
+    "heightMm": 5
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "library": "kicad:Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm",
+    "license": "CC-BY-SA-4.0",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Derived from the KiCad library footprint; component tolerance and lead bend not included."
+}

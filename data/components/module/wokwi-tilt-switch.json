@@ -1,0 +1,20 @@
+{
+  "partType": "wokwi-tilt-switch",
+  "displayName": "Tilt switch",
+  "category": "module",
+  "envelope": {
+    "widthMm": 5,
+    "depthMm": 5,
+    "heightMm": 12
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Cylindrical tilt switch; envelope is the bounding box including leads."
+}

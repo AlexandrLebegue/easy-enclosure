@@ -1,0 +1,20 @@
+{
+  "partType": "wokwi-ir-receiver",
+  "displayName": "IR receiver module",
+  "category": "sensor",
+  "envelope": {
+    "widthMm": 20,
+    "depthMm": 15,
+    "heightMm": 8
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "KY-022 style IR receiver module with 38 kHz demodulator."
+}

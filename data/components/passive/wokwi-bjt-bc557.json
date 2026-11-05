@@ -1,0 +1,21 @@
+{
+  "partType": "wokwi-bjt-bc557",
+  "displayName": "PNP transistor BC557 (TO-92)",
+  "category": "passive",
+  "envelope": {
+    "widthMm": 4.7,
+    "depthMm": 4.7,
+    "heightMm": 5.3
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "library": "kicad:Package_TO_SOT_THT:TO-92_Inline",
+    "license": "CC-BY-SA-4.0",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Derived from the KiCad library footprint; component tolerance and lead bend not included."
+}

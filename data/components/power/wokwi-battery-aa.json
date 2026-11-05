@@ -1,0 +1,20 @@
+{
+  "partType": "wokwi-battery-aa",
+  "displayName": "AA battery",
+  "category": "power",
+  "envelope": {
+    "widthMm": 14.5,
+    "depthMm": 50.5,
+    "heightMm": 14.5
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "IEC LR6/AA cell, 14.5 mm diameter x 50.5 mm long."
+}

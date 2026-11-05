@@ -1,0 +1,42 @@
+{
+  "partType": "wokwi-lcd2004",
+  "displayName": "LCD 2004 character module",
+  "category": "display",
+  "envelope": {
+    "widthMm": 98,
+    "depthMm": 60,
+    "heightMm": 12
+  },
+  "mountHoles": [
+    {
+      "xMm": 3,
+      "yMm": 3,
+      "diameterMm": 3
+    },
+    {
+      "xMm": 95,
+      "yMm": 3,
+      "diameterMm": 3
+    },
+    {
+      "xMm": 3,
+      "yMm": 57,
+      "diameterMm": 3
+    },
+    {
+      "xMm": 95,
+      "yMm": 57,
+      "diameterMm": 3
+    }
+  ],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://www.vishay.com/docs/37480/lcd-016m002a.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Dimensions from manufacturer mechanical drawings/common breakout boards; verify against the physical part before printing."
+}

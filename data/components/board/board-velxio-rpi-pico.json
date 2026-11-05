@@ -1,0 +1,51 @@
+{
+  "partType": "board-velxio-rpi-pico",
+  "displayName": "Raspberry Pi Pico",
+  "category": "board",
+  "envelope": {
+    "widthMm": 51,
+    "depthMm": 21,
+    "heightMm": 3.5
+  },
+  "mountHoles": [
+    {
+      "xMm": 2,
+      "yMm": 4.8,
+      "diameterMm": 2.1
+    },
+    {
+      "xMm": 49,
+      "yMm": 4.8,
+      "diameterMm": 2.1
+    },
+    {
+      "xMm": 2,
+      "yMm": 16.2,
+      "diameterMm": 2.1
+    },
+    {
+      "xMm": 49,
+      "yMm": 16.2,
+      "diameterMm": 2.1
+    }
+  ],
+  "cutouts": [
+    {
+      "id": "micro-usb",
+      "side": "left",
+      "offsetMm": 6,
+      "widthMm": 9,
+      "heightMm": 4,
+      "label": "Micro-USB"
+    }
+  ],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://pip.raspberrypi.com/documents/RP-008307-DS-pico-datasheet.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "datasheet",
+  "schemaVersion": 1,
+  "notes": "51 x 21 x 1 mm PCB, 4 x 2.1 mm holes on a 47 x 11.4 mm pattern. Height includes the overhanging micro-USB connector; pin headers excluded."
+}

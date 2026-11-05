@@ -1,0 +1,20 @@
+{
+  "partType": "wokwi-neopixel",
+  "displayName": "WS2812B NeoPixel LED",
+  "category": "module",
+  "envelope": {
+    "widthMm": 5,
+    "depthMm": 5,
+    "heightMm": 1.6
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Single WS2812B 5050 LED package."
+}

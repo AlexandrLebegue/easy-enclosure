@@ -1,0 +1,30 @@
+{
+  "partType": "wokwi-arduino-nano",
+  "displayName": "Arduino Nano",
+  "category": "board",
+  "envelope": {
+    "widthMm": 45,
+    "depthMm": 18,
+    "heightMm": 7
+  },
+  "mountHoles": [],
+  "cutouts": [
+    {
+      "id": "mini-usb",
+      "side": "front",
+      "offsetMm": 3,
+      "widthMm": 8,
+      "heightMm": 4,
+      "label": "Mini-USB"
+    }
+  ],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://docs.arduino.cc/resources/datasheets/A000005-datasheet.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "datasheet",
+  "schemaVersion": 1,
+  "notes": "No mounting holes on the standard Nano. Header pins excluded from the envelope height."
+}

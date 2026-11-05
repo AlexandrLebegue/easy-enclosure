@@ -1,0 +1,21 @@
+{
+  "partType": "wokwi-inductor",
+  "displayName": "Inductor (axial)",
+  "category": "passive",
+  "envelope": {
+    "widthMm": 6,
+    "depthMm": 2.5,
+    "heightMm": 2.5
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "library": "kicad:Inductor_THT:L_Axial_L5.3mm_D2.2mm_P10.16mm_Horizontal",
+    "license": "CC-BY-SA-4.0",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Derived from the KiCad library footprint; component tolerance and lead bend not included."
+}

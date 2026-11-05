@@ -1,0 +1,20 @@
+{
+  "partType": "velxio-breadboard-mini",
+  "displayName": "Breadboard 400 points",
+  "category": "module",
+  "envelope": {
+    "widthMm": 45,
+    "depthMm": 35,
+    "heightMm": 8.5
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Standard 400 tie-point mini breadboard."
+}

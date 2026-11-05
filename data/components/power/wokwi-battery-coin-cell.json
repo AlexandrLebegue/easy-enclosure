@@ -1,0 +1,20 @@
+{
+  "partType": "wokwi-battery-coin-cell",
+  "displayName": "CR2032 coin cell",
+  "category": "power",
+  "envelope": {
+    "widthMm": 20,
+    "depthMm": 20,
+    "heightMm": 3.2
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "CR2032 lithium coin cell: 20 mm diameter x 3.2 mm."
+}

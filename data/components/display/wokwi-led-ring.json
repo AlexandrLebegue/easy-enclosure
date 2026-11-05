@@ -1,0 +1,21 @@
+{
+  "partType": "wokwi-led-ring",
+  "displayName": "NeoPixel LED ring 24",
+  "category": "display",
+  "envelope": {
+    "widthMm": 65,
+    "depthMm": 65,
+    "heightMm": 3
+  },
+  "mountHoles": [],
+  "cutouts": [],
+  "keepouts": [],
+  "provenance": {
+    "url": "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf",
+    "license": "datasheet",
+    "retrievedAt": "2026-11-05T00:00:00Z"
+  },
+  "confidence": "estimated",
+  "schemaVersion": 1,
+  "notes": "Round 24-LED ring, 65 mm outer diameter. Envelope is expressed as its bounding square."
+}

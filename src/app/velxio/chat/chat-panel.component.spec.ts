@@ -162,12 +162,14 @@ describe('ChatPanelComponent', () => {
 
     component.baseUrlDraft = 'http://localhost:9999/v1';
     component.modelDraft = 'local-model';
+    component.apiKeyDraft = 'secret';
     component.timeoutDraft = '30';
     component.saveSettings();
 
     expect(saveConfigSpy).toHaveBeenCalledWith({
       baseUrl: 'http://localhost:9999/v1',
       model: 'local-model',
+      apiKey: 'secret',
       timeoutMs: 30_000,
     });
     expect(component.config().model).toBe('local-model');

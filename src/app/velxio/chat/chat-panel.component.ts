@@ -54,6 +54,7 @@ export class ChatPanelComponent {
   readonly error = signal<string | null>(null);
   readonly pendingQuestion = signal<string | null>(null);
   readonly explanation = signal<string | null>(null);
+  readonly streamingText = signal('');
   readonly showSettings = signal(false);
   readonly settingsError = signal<string | null>(null);
   readonly config = signal(this.chat.getConfig());
@@ -61,6 +62,7 @@ export class ChatPanelComponent {
   draft = '';
   baseUrlDraft = '';
   modelDraft = '';
+  apiKeyDraft = '';
   timeoutDraft = '';
 
   private readonly turns = signal<ChatTurn[]>([]);
@@ -78,6 +80,7 @@ export class ChatPanelComponent {
     this.config.set(config);
     this.baseUrlDraft = config.baseUrl;
     this.modelDraft = config.model;
+    this.apiKeyDraft = config.apiKey;
     this.timeoutDraft = String(Math.round(config.timeoutMs / 1000));
 
     effect(() => {
@@ -133,6 +136,10 @@ export class ChatPanelComponent {
     this.modelDraft = (event.target as HTMLInputElement).value;
   }
 
+  onApiKeyInput(event: Event): void {
+    this.apiKeyDraft = (event.target as HTMLInputElement).value;
+  }
+
   onTimeoutInput(event: Event): void {
     this.timeoutDraft = (event.target as HTMLInputElement).value;
   }
@@ -151,11 +158,13 @@ export class ChatPanelComponent {
     const next = this.chat.saveConfig({
       baseUrl: this.baseUrlDraft,
       model: this.modelDraft,
+      apiKey: this.apiKeyDraft,
       timeoutMs: Math.round(timeoutSeconds * 1000),
     });
     this.config.set(next);
     this.baseUrlDraft = next.baseUrl;
     this.modelDraft = next.model;
+    this.apiKeyDraft = next.apiKey;
     this.timeoutDraft = String(Math.round(next.timeoutMs / 1000));
     this.settingsError.set(null);
     this.showSettings.set(false);
@@ -171,15 +180,19 @@ export class ChatPanelComponent {
     this.error.set(null);
     this.explanation.set(null);
     this.pendingQuestion.set(null);
+    this.streamingText.set('');
     this.append({ role: 'user', text });
     this.busy.set(true);
 
     try {
-      const response = await this.chat.sendMessage({
-        spec: this.spec(),
-        history: this.turns(),
-        userText: text,
-      });
+      const response = await this.chat.sendMessage(
+        {
+          spec: this.spec(),
+          history: this.turns(),
+          userText: text,
+        },
+        (delta) => this.streamingText.update((current) => current + delta),
+      );
 
       const result = applyPatches(this.spec(), response.patches);
       this.spec.set(result.spec);
@@ -218,6 +231,7 @@ export class ChatPanelComponent {
       this.error.set(message);
       this.append({ role: 'system', text: `Erreur : ${message}` });
     } finally {
+      this.streamingText.set('');
       this.busy.set(false);
     }
   }
@@ -229,6 +243,7 @@ export class ChatPanelComponent {
     this.pendingQuestion.set(null);
     this.explanation.set(null);
     this.error.set(null);
+    this.streamingText.set('');
     clearChatHistory();
   }
 

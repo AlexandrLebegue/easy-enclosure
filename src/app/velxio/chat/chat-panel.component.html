@@ -51,6 +51,17 @@
         />
       </label>
       <label class="block text-[11px] font-semibold text-slate-600">
+        Clé API (optionnelle)
+        <input
+          type="password"
+          autocomplete="off"
+          class="mt-1 w-full rounded border border-slate-300 px-2 py-1 text-xs text-slate-800"
+          placeholder="Bearer token"
+          [value]="apiKeyDraft"
+          (input)="onApiKeyInput($event)"
+        />
+      </label>
+      <label class="block text-[11px] font-semibold text-slate-600">
         Timeout (secondes)
         <input
           type="number"
@@ -149,6 +160,20 @@
             </div>
           }
         }
+      </article>
+    }
+
+    @if (busy()) {
+      <article class="rounded-lg border border-sky-200 bg-sky-50 px-3 py-2">
+        <p class="mb-1 text-[10px] font-extrabold uppercase tracking-wider text-slate-500">
+          Assistant
+        </p>
+        <p class="text-xs italic text-slate-600">
+          Réception de la réponse…
+          @if (streamingText().length > 0) {
+            <span>({{ streamingText().length }} caractères)</span>
+          }
+        </p>
       </article>
     }
 

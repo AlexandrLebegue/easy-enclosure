@@ -84,11 +84,27 @@ describe('App', () => {
   it('restores a persisted chat spec into the CAD parameters', () => {
     const persisted = createDefaultSpec();
     persisted.rules.wallMm = 3.4;
+    persisted.cutouts = [{ id: 'usb', side: 'front', offsetMm: 10, widthMm: 12, heightMm: 6 }];
     localStorage.setItem('velxio.chat.spec', JSON.stringify(persisted));
 
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
 
-    expect(TestBed.inject(EnclosureStateService).params().wall).toBe(3.4);
+    const params = TestBed.inject(EnclosureStateService).params();
+    expect(params.wall).toBe(3.4);
+    expect(params.holes.length).toBe(1);
+  });
+
+  it('syncs sidebar parameter edits back into the chat spec', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    const app = fixture.componentInstance;
+    const state = TestBed.inject(EnclosureStateService);
+
+    state.updateParam('wall', 4);
+    TestBed.flushEffects();
+    fixture.detectChanges();
+
+    expect(app.spec().rules.wallMm).toBe(4);
   });
 });

@@ -133,4 +133,31 @@ describe('ChatService', () => {
     expect(config.model).toBe('local-model');
     expect(config.timeoutMs).toBe(1500);
   });
+
+  it('streams SSE deltas and parses the final payload', async () => {
+    const json = '{"message":"Mode empilé.","patches":[{"op":"set-mode","value":"stacked"}]}';
+    const sse = `data: {"choices":[{"delta":{"content":${JSON.stringify(json)}}}]}\n\ndata: [DONE]\n\n`;
+    const fetchSpy = spyOn(globalThis, 'fetch').and.resolveTo(
+      new Response(sse, {
+        status: 200,
+        headers: { 'Content-Type': 'text/event-stream' },
+      }),
+    );
+
+    const service = new ChatService();
+    const deltas: string[] = [];
+    const result = await service.sendMessage(
+      { spec: createDefaultSpec(), history: [], userText: 'empile' },
+      (delta) => deltas.push(delta),
+    );
+
+    expect(deltas.join('')).toBe(json);
+    expect(result.message).toBe('Mode empilé.');
+    expect(result.patches).toEqual([{ op: 'set-mode', value: 'stacked' }]);
+
+    const body = JSON.parse(String((fetchSpy.calls.mostRecent().args[1] as RequestInit).body)) as {
+      stream?: boolean;
+    };
+    expect(body.stream).toBeTrue();
+  });
 });

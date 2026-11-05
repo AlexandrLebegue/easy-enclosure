@@ -30,10 +30,10 @@ describe('ChatStateService', () => {
   it('rejects an invalid spec and keeps the previous one', () => {
     const state = new ChatStateService();
     const invalid = createDefaultSpec();
-    invalid.rules.wallMm = 20;
+    invalid.outer.widthMm = -1;
 
     expect(state.setSpec(invalid)).toBeFalse();
-    expect(state.spec().rules.wallMm).toBe(2);
+    expect(state.spec().outer.widthMm).toBe(80);
   });
 
   it('reports whether the spec was restored from storage', () => {

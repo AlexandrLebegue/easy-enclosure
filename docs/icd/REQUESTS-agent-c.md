@@ -1,29 +1,26 @@
 # REQUESTS — Agent C (assistant conversationnel)
 
-Demandes de changement hors périmètre, à traiter par le propriétaire du fichier concerné.
+Toutes les demandes ouvertes ont été traitées. Aucune action externe en attente.
 
 ## R1 — Monter le panneau de chat à côté de l'aperçu 3D — RÉSOLU
 
-**Fichiers concernés** : `src/app/app.ts`, `src/app/app.html`, `src/app/app.spec.ts`.
+Le panneau est monté dans `src/app/app.html` à gauche de `app-renderer`, avec bouton de
+masquage, et relié à `ChatStateService` via `[specInput]` / `(specChange)`. Le test de la
+coquille utilise un mock `app-chat-panel`.
 
-**État** : fait le 2026-11-05 à la demande explicite de l'utilisateur. Le panneau est monté à
-gauche de `app-renderer`, avec un bouton pour le masquer, et relié à `ChatStateService` via
-`[specInput]` / `(specChange)`. Un mock `app-chat-panel` a été ajouté au test de la coquille.
+## R2 — Pont EnclosureSpec ↔ moteur CAO — RÉSOLU
 
-## R2 — Pont EnclosureSpec → moteur CAO — RÉSOLU
+`chat/spec-bridge.ts` assure les deux sens :
 
-**Fichiers concernés** : zone agent B (`src/app/velxio/layout/**`, `cutouts/**`, `supports/**`)
-et éventuellement `src/app/velxio/model/**` (ProxBoss).
+- `applySpecToParams` mappe la spec via `enclosureSpecToParams` (agent B), préserve les options
+  hors contrat et applique les découpes/supports en delta pour ne pas perdre les formes upstream ;
+- `paramsToEnclosureSpec` reconstruit la spec après une édition dans le panneau de paramètres,
+  y compris en unités impériales.
 
-**État** : fait le 2026-11-05. `App.onSpecChange` valide la spec via `ChatStateService`, la mappe
-avec `enclosureSpecToParams` (agent B), puis met à jour `EnclosureStateService` ; le renderer se
-régénère via son effect existant. Une spec persistée est réappliquée au démarrage. Le chat
-continue de ne produire que des `ChatPatch` validés, jamais de géométrie.
+L'aperçu 3D se met à jour après chaque patch et le chat repart de l'état réel de l'application.
 
-## R3 — Authentification du serveur de modèle par défaut
+## R3 — Authentification du serveur de modèle — RÉSOLU
 
-**Fichiers concernés** : configuration d'exécution (hors dépôt).
-
-**Besoin** : `http://192.168.1.59:18020/v1` répond `401 Unauthorized` sans clé API. Fournir une
-clé via les réglages UI du panneau (`Base URL`, `Modèle`) ou via
-`globalThis.__VELXIO_CHAT_CONFIG__ = { apiKey: '...' }` pour permettre un test réseau réel.
+Le serveur `http://192.168.1.59:18020/v1` exige un bearer token. Le panneau expose désormais un
+champ « Clé API » (masqué, persisté localement). Le test réel avec la clé de l'environnement
+renvoie 200 et des patches conformes ; le streaming SSE est également supporté.

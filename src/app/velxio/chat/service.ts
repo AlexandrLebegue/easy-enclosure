@@ -204,6 +204,87 @@ function extractMessageContent(payload: unknown): string {
   return '';
 }
 
+function extractDeltaContent(payload: unknown): string {
+  if (!isRecord(payload)) {
+    return '';
+  }
+  const choices = payload['choices'];
+  if (!Array.isArray(choices) || choices.length === 0) {
+    return '';
+  }
+  const first = choices[0];
+  if (!isRecord(first)) {
+    return '';
+  }
+  const delta = first['delta'];
+  if (isRecord(delta) && typeof delta['content'] === 'string') {
+    return delta['content'];
+  }
+  return extractMessageContent(payload);
+}
+
+async function readEventStream(
+  response: Response,
+  onDelta: (delta: string) => void,
+): Promise<string> {
+  const reader = response.body?.getReader();
+  if (!reader) {
+    return '';
+  }
+  const decoder = new TextDecoder();
+  let buffer = '';
+  let content = '';
+
+  const consume = (block: string): boolean => {
+    const data = block
+      .split('\n')
+      .filter((line) => line.startsWith('data:'))
+      .map((line) => line.slice('data:'.length).trimStart())
+      .join('\n')
+      .trim();
+    if (!data) {
+      return false;
+    }
+    if (data === '[DONE]') {
+      return true;
+    }
+    const payload = parseJson(data);
+    const delta = extractDeltaContent(payload);
+    if (delta) {
+      content += delta;
+      onDelta(delta);
+    }
+    return false;
+  };
+
+  try {
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) {
+        break;
+      }
+      buffer += decoder.decode(value, { stream: true }).replace(/\r\n/g, '\n');
+      let boundary = buffer.indexOf('\n\n');
+      while (boundary >= 0) {
+        const block = buffer.slice(0, boundary);
+        buffer = buffer.slice(boundary + 2);
+        if (consume(block)) {
+          await reader.cancel().catch(() => undefined);
+          return content;
+        }
+        boundary = buffer.indexOf('\n\n');
+      }
+    }
+    if (buffer.trim()) {
+      consume(buffer);
+    }
+  } finally {
+    reader.releaseLock();
+  }
+
+  return content;
+}
+
 function trimBaseUrl(baseUrl: string): string {
   return baseUrl.replace(/\/+$/, '');
 }
@@ -222,8 +303,12 @@ export class ChatService {
     return saveChatConfig(patch);
   }
 
-  /** Envoie un tour de conversation et renvoie les patches proposés. */
-  async sendMessage(request: ChatRequest): Promise<ChatTurn> {
+  /**
+   * Envoie un tour de conversation et renvoie les patches proposés.
+   * `onDelta` active le streaming SSE quand le serveur le supporte ; sinon la
+   * réponse JSON complète est transmise une seule fois.
+   */
+  async sendMessage(request: ChatRequest, onDelta?: (delta: string) => void): Promise<ChatTurn> {
     const config = this.getConfig();
     const timeoutMs = config.timeoutMs;
     const controller = new AbortController();
@@ -252,6 +337,7 @@ export class ChatService {
           model: config.model,
           temperature: 0.2,
           messages,
+          ...(onDelta ? { stream: true } : {}),
         }),
         signal: controller.signal,
       });
@@ -263,6 +349,17 @@ export class ChatService {
         );
       }
 
+      const contentType = response.headers.get('Content-Type') ?? '';
+      if (onDelta && contentType.includes('text/event-stream')) {
+        const content = await readEventStream(response, onDelta);
+        const parsed = parseChatResponse(content);
+        return {
+          userText: request.userText,
+          patches: parsed.patches,
+          message: parsed.message,
+        };
+      }
+
       let payload: unknown;
       try {
         payload = (await response.json()) as unknown;
@@ -270,7 +367,11 @@ export class ChatService {
         throw new ChatServiceError('La réponse HTTP du modèle n’est pas un JSON valide.');
       }
 
-      const parsed = parseChatResponse(extractMessageContent(payload));
+      const content = extractMessageContent(payload);
+      if (onDelta) {
+        onDelta(content);
+      }
+      const parsed = parseChatResponse(content);
       return {
         userText: request.userText,
         patches: parsed.patches,

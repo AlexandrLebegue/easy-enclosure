@@ -93,18 +93,14 @@ function cutoutIssue(spec: EnclosureSpec, cutout: Partial<Cutout>): string | nul
   if (cutout.side === undefined || !CUTOUT_SIDES.includes(cutout.side)) {
     return `Face de découpe invalide : ${String(cutout.side)}.`;
   }
-  if (!isFiniteNumber(cutout.offsetMm) || cutout.offsetMm < 0) {
-    return 'offsetMm doit être un nombre positif ou nul.';
+  if (!isFiniteNumber(cutout.offsetMm)) {
+    return 'offsetMm doit être un nombre.';
   }
   if (!isFiniteNumber(cutout.widthMm) || cutout.widthMm <= 0) {
     return 'widthMm doit être un nombre strictement positif.';
   }
   if (!isFiniteNumber(cutout.heightMm) || cutout.heightMm <= 0) {
     return 'heightMm doit être un nombre strictement positif.';
-  }
-  const available = sideLength(spec, cutout.side);
-  if (cutout.offsetMm + cutout.widthMm > available + 1e-6) {
-    return `La découpe dépasse la face ${cutout.side} (${(cutout.offsetMm + cutout.widthMm).toFixed(2)} mm > ${available} mm).`;
   }
   if (cutout.depthMm !== undefined && (!isFiniteNumber(cutout.depthMm) || cutout.depthMm < 0)) {
     return 'depthMm doit être un nombre positif ou nul.';
@@ -114,6 +110,23 @@ function cutoutIssue(spec: EnclosureSpec, cutout: Partial<Cutout>): string | nul
     (!isFiniteNumber(cutout.clearanceMm) || cutout.clearanceMm < 0 || cutout.clearanceMm > 5)
   ) {
     return 'clearanceMm doit être comprise entre 0 et 5 mm.';
+  }
+  return null;
+}
+
+function cutoutPlacementIssue(spec: EnclosureSpec, cutout: Partial<Cutout>): string | null {
+  if (cutout.side === undefined) {
+    return null;
+  }
+  if (!isFiniteNumber(cutout.offsetMm) || cutout.offsetMm < 0) {
+    return 'offsetMm doit être un nombre positif ou nul.';
+  }
+  if (!isFiniteNumber(cutout.widthMm) || cutout.widthMm <= 0) {
+    return 'widthMm doit être un nombre strictement positif.';
+  }
+  const available = sideLength(spec, cutout.side);
+  if (cutout.offsetMm + cutout.widthMm > available + 1e-6) {
+    return `La découpe dépasse la face ${cutout.side} (${(cutout.offsetMm + cutout.widthMm).toFixed(2)} mm > ${available} mm).`;
   }
   return null;
 }
@@ -234,7 +247,7 @@ function applyOne(spec: EnclosureSpec, patch: ChatPatch): void {
       if (spec.cutouts.some((existing) => existing.id === cutout.id)) {
         fail(`La découpe « ${String(cutout.id)} » existe déjà.`);
       }
-      const issue = cutoutIssue(spec, cutout);
+      const issue = cutoutIssue(spec, cutout) ?? cutoutPlacementIssue(spec, cutout);
       if (issue) {
         fail(issue);
       }
@@ -359,11 +372,12 @@ export function validateEnclosureSpec(spec: EnclosureSpec): SpecValidationResult
   } else {
     for (const key of Object.keys(RULE_BOUNDS) as RuleKey[]) {
       const value = (spec.rules as unknown as Record<string, unknown>)[key];
-      const bounds = RULE_BOUNDS[key];
       if (!isFiniteNumber(value)) {
         issues.push(`rules.${key} doit être numérique.`);
-      } else if (value < bounds.min || value > bounds.max) {
-        issues.push(`rules.${key} doit être comprise entre ${bounds.min} et ${bounds.max} mm.`);
+      } else if (value < 0) {
+        issues.push(`rules.${key} doit être positif ou nul.`);
+      } else if ((key === 'wallMm' || key === 'floorMm' || key === 'lidMm') && value === 0) {
+        issues.push(`rules.${key} doit être strictement positif.`);
       }
     }
   }

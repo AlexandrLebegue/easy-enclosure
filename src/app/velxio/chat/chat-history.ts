@@ -24,9 +24,7 @@ function isEntry(value: unknown): value is ChatEntry {
 
 function isTurn(value: unknown): value is ChatTurn {
   return (
-    isRecord(value) &&
-    typeof value['userText'] === 'string' &&
-    Array.isArray(value['patches'])
+    isRecord(value) && typeof value['userText'] === 'string' && Array.isArray(value['patches'])
   );
 }
 

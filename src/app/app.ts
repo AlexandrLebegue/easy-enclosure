@@ -1,9 +1,16 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  signal,
+  untracked,
+} from '@angular/core';
 import { RendererComponent } from './features/renderer/renderer.component';
 import { SidebarComponent } from './features/sidebar/sidebar.component';
 import { ChatPanelComponent } from './velxio/chat/chat-panel.component';
 import { ChatStateService } from './velxio/chat/chat-state.service';
-import { enclosureSpecToParams } from './velxio/import/enclosure-mesh';
+import { applySpecToParams, paramsToEnclosureSpec } from './velxio/chat/spec-bridge';
 import type { EnclosureSpec } from './velxio/model/enclosure.types';
 import { EnclosureStateService } from './core/state/enclosure-state.service';
 
@@ -21,10 +28,30 @@ export class App {
   readonly spec = this.chatState.spec;
   readonly chatOpen = signal(true);
 
+  private applyingChatSpec = false;
+
   constructor() {
     if (this.chatState.restoredFromStorage) {
-      this.applySpecToPreview(this.spec());
+      this.applyingChatSpec = true;
+      this.applySpecToPreview(this.spec(), this.spec(), {
+        replaceHoles: true,
+        replaceMounts: true,
+      });
+    } else {
+      this.chatState.setSpec(paramsToEnclosureSpec(this.enclosureState.params(), this.spec()));
     }
+
+    effect(() => {
+      const params = this.enclosureState.params();
+      if (this.applyingChatSpec) {
+        this.applyingChatSpec = false;
+        return;
+      }
+      untracked(() => {
+        const next = paramsToEnclosureSpec(params, this.chatState.spec());
+        this.chatState.setSpec(next);
+      });
+    });
   }
 
   toggleChat(): void {
@@ -32,23 +59,22 @@ export class App {
   }
 
   onSpecChange(spec: EnclosureSpec): void {
+    const previous = this.chatState.spec();
     if (!this.chatState.setSpec(spec)) {
       return;
     }
-    this.applySpecToPreview(spec);
+    this.applyingChatSpec = true;
+    this.applySpecToPreview(spec, previous);
   }
 
-  /** Pont EnclosureSpec -> moteur JSCAD via le mapping fourni par l'agent B. */
-  private applySpecToPreview(spec: EnclosureSpec): void {
-    const mapped = enclosureSpecToParams(spec);
-    const current = this.enclosureState.params();
-    this.enclosureState.setParams({
-      ...mapped,
-      measurementSystem: current.measurementSystem,
-      showGrid: current.showGrid,
-      gridSpacing: current.gridSpacing,
-      showLid: current.showLid,
-      showBase: current.showBase,
-    });
+  /** Pont EnclosureSpec <-> moteur JSCAD, avec conservation des options hors contrat. */
+  private applySpecToPreview(
+    spec: EnclosureSpec,
+    previous: EnclosureSpec,
+    options: { replaceHoles?: boolean; replaceMounts?: boolean } = {},
+  ): void {
+    this.enclosureState.setParams(
+      applySpecToParams(spec, this.enclosureState.params(), previous, options),
+    );
   }
 }

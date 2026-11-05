@@ -42,13 +42,15 @@ export class ChatStateService {
   readonly restoredFromStorage = this.persisted !== null;
 
   /** Accepte une spec complète uniquement si elle est valide ; renvoie false sinon. */
-  setSpec(next: EnclosureSpec): boolean {
+  setSpec(next: EnclosureSpec, options: { persist?: boolean } = {}): boolean {
     const candidate = cloneSpec(next);
     if (!validateEnclosureSpec(candidate).ok) {
       return false;
     }
     this.current.set(candidate);
-    persistSpec(candidate);
+    if (options.persist !== false) {
+      persistSpec(candidate);
+    }
     return true;
   }
 

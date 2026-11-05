@@ -2,6 +2,7 @@ import measureBoundingBox from '@jscad/modeling/src/measurements/measureBounding
 import type { Geom3 } from '@jscad/modeling/src/geometries/types';
 
 import { buildEnclosureSpec } from '../layout/enclosure-spec-builder';
+import { importAndGenerateEnclosure } from './enclosure-pipeline';
 import { createExampleVelxioZip, EXAMPLE_COMPONENT_SPECS } from './example-project';
 import { buildEnclosureGeometry, generateEnclosureStlBlob } from './enclosure-mesh';
 import { createStaticPartResolver } from './part-resolver';
@@ -94,6 +95,26 @@ describe('enclosure pipeline', () => {
     expect(depth).toBeCloseTo(24.6, 3);
     expect(height).toBeCloseTo(74, 3);
     expect(blobSize(spec)).toBeGreaterThan(1000);
+  });
+
+  it('runs the whole zip-to-STL pipeline in one call', async () => {
+    const zip = await createExampleVelxioZip();
+    const project = await importAndGenerateEnclosure(zip, {
+      import: {
+        fileName: 'example.zip',
+        importedAt: '2026-11-05T10:00:00Z',
+        resolver,
+      },
+      build: {
+        mode: 'flat',
+        generatedAt: '2026-11-05T10:00:00Z',
+      },
+    });
+
+    expect(project.board.parts.length).toBe(5);
+    expect(project.spec.parts.length).toBe(5);
+    expect(project.warnings.some((warning) => warning.code === 'UNKNOWN_PART_TYPE')).toBeFalse();
+    expect(project.stl.size).toBeGreaterThan(1000);
   });
 
   it('keeps unknown parts visible in the spec but out of the physical layout', async () => {

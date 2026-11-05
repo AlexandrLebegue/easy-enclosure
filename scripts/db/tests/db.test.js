@@ -2,8 +2,9 @@
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
 const path = require('node:path');
-const { spawn } = require('node:child_process');
+const { spawn, spawnSync } = require('node:child_process');
 
 const {
   ROOT,
@@ -87,6 +88,47 @@ test('build produces a valid index and report', () => {
   );
   assert.ok(index);
   assert.equal(index.count, report.checked);
+});
+
+test('build exits non-zero and unpublishes the index on invalid component data', (t) => {
+  const badFile = path.join(ROOT, 'data', 'components', 'other', 'zz-invalid-test.json');
+  fs.mkdirSync(path.dirname(badFile), { recursive: true });
+  fs.writeFileSync(
+    badFile,
+    JSON.stringify(
+      validSpec({
+        partType: 'zz-invalid-test',
+        envelope: { widthMm: -5, depthMm: 10, heightMm: 5 },
+      }),
+    ),
+  );
+  t.after(() => {
+    if (fs.existsSync(badFile)) fs.unlinkSync(badFile);
+    build();
+  });
+
+  const result = spawnSync(process.execPath, [path.join(ROOT, 'scripts', 'db', 'build.js')], {
+    cwd: ROOT,
+    encoding: 'utf8',
+  });
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /NEGATIVE_DIMENSION/);
+  assert.equal(fs.existsSync(path.join(ROOT, 'data', 'components.index.json')), false);
+});
+
+test('priority board aliases and display/servo variants resolve', () => {
+  const requested = [
+    'board-velxio-esp32',
+    'board-velxio-arduino-uno',
+    'board-velxio-esp32-c3',
+    'board-velxio-rpi-pico',
+    'board-velxio-stm32',
+    'wokwi-servo-mg996r',
+    'velxio-epaper-2-13',
+  ];
+  const { resolved, missing } = resolvePartTypes(requested, loadParts());
+  assert.deepEqual(missing, []);
+  assert.equal(resolved.length, requested.length);
 });
 
 test('resolve returns 4 resolved and 1 missing for 5 requested types', () => {

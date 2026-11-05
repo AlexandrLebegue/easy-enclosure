@@ -23,14 +23,16 @@ Demande : ajouter deux `partType` officiels dans Velxio (ou dans le contrat) si 
 doivent être distinguées automatiquement. En l'état, `velxio-epaper` reste la variante 1.54 et
 `velxio-epaper-2-13` est un extra hors liste observée.
 
-## R3 — Composants virtuels sans empreinte physique
+## R3 — Composants virtuels : couverts sur décision du chef de projet
 
-20 types observés (`velxio-logic-*`, `velxio-flip-flop-*`, `velxio-junction`,
-`wokwi-opamp-ideal`) sont des composants de simulation sans corps physique. Ils restent
-volontairement non couverts et apparaissent dans `npm run db:coverage`.
+Les 20 types virtuels (`velxio-logic-*`, `velxio-flip-flop-*`, `velxio-junction`,
+`wokwi-opamp-ideal`) sont désormais couverts avec des empreintes plausibles, à la demande du
+chef de projet : DIP-14/DIP-16 pour les portes/bascules/op-amp, boîte 2 x 2 x 1 mm pour la
+jonction. Tous sont `confidence: estimated` avec une note expliquant l'équivalent physique
+supposé et l'absence de fiche constructeur.
 
-Demande : confirmer qu'ils doivent rester hors base dimensionnelle (recommandé) ou fournir une
-règle de boîtier pour les composants virtuels.
+Demande : si Velxio publie des empreintes physiques officielles pour ces symboles, fournir la
+correspondance canonique afin de remplacer ces valeurs estimées.
 
 ## R4 — Alias de cartes `board-velxio-*`
 
